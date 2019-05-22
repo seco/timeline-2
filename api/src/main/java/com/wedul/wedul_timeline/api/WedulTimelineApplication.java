@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline;
+package com.wedul.wedul_timeline.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

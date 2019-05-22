@@ -1,6 +1,2 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
 rootProject.name = 'wedul_timeline'
+include 'core', 'api'

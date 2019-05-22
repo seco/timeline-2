@@ -1,29 +1,59 @@
-plugins {
-    id 'org.springframework.boot' version '2.1.5.RELEASE'
-    id 'java'
-}
-
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.wedul'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+buildscript {
+    ext {
+        springBootVersion = '2.1.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE")
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.21"
     }
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    group = 'com.wedul.wedul_timeline'
+    version = '0.0.1'
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'war'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: 'net.ltgt.apt'
+
+    sourceCompatibility = 1.11
+    targetCompatibility = 1.11
+
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+
+    dependencies {
+    //    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        }
+    }
 }
