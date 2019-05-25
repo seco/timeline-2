@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * wedul_timeline
@@ -12,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @author wedul
  * @since 2019-05-22
  **/
-@EnableWebMvc
 @RestControllerAdvice
 public class ExceptionAdvisor {
 

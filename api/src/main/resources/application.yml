@@ -1,5 +1,4 @@
 # 기본 환경설정
-
 spring:
   profiles:
     active: development

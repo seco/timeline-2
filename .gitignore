@@ -57,6 +57,7 @@ Tomcat/
 /build
 /out
 /catalina*
+/*/out
 
 .gradle*
 */.gradle/

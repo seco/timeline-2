@@ -22,7 +22,7 @@ import java.util.List;
 @Configuration
 @AllArgsConstructor
 @EnableWebMvc // <annotation-driven /> // WebMvcConfiguration에서 구성한 스프링 MVC 구성을 불러올 수 있다.
-@ComponentScan(basePackages = {"com.wedul.wedul_timeline.*"})
+@ComponentScan(basePackages = {"com.wedul.wedul_timeline"})
 public class ServletContextConfig implements WebMvcConfigurer {
 
   @Override
