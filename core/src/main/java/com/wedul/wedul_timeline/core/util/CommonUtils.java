@@ -65,17 +65,6 @@ public final class CommonUtils {
   }
 
   /**
-   * 현재 request를 이용하여  Cookie 획득하기
-   *
-   * @param request
-   * @return
-   */
-  public static Cookie getCookieBySession(HttpServletRequest request) {
-    Cookie loginCookie = WebUtils.getCookie(request, Constant.LOGIN_COOKIE);
-    return loginCookie;
-  }
-
-  /**
    * 현재 시간을 반환
    *
    * @return

@@ -1,11 +1,7 @@
-bootJar{
-    enabled = false
-}
-jar {
-    enabled = true
-}
-
 dependencies {
+    compile project(':core')
 
+    // tomcat
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version:'8.5.29'
 
 }

@@ -1,5 +1,6 @@
 package com.wedul.wedul_timeline.api.item.controller;
 
+import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemController {
 
   @GetMapping("")
-  public String items() {
-    return "";
+  public String items() throws NotFoundException {
+    throw new NotFoundException();
   }
 
 }

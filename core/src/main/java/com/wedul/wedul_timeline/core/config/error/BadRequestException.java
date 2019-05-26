@@ -11,4 +11,5 @@ public class BadRequestException extends CustomException {
   public BadRequestException() {
     super("잘못된 요청입니다.", 500);
   }
+
 }

@@ -44,6 +44,7 @@ subprojects {
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
         compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
         compile 'org.springframework.data:spring-data-redis:2.0.5.RELEASE'
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.1.5.RELEASE'
