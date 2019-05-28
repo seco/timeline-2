@@ -37,6 +37,19 @@ spring:
   session:
     store-type: redis
 
+  kafka:
+    bootstrap-servers:
+      127.0.0.1:9092
+    consumer:
+      group-id: wedul_timeline_id
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    template:
+      default-topic: wedul_timeline
 # 운영환경 설정
 ---
 spring:
@@ -71,3 +84,17 @@ spring:
 
   session:
     store-type: redis
+
+  kafka:
+    bootstrap-servers:
+      127.0.0.1:9092
+    consumer:
+      group-id: wedul_timeline_id
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    template:
+      default-topic: wedul_timeline

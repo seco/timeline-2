@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -17,5 +18,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAspectJAutoProxy(proxyTargetClass = true) // 자동으로 AspectJ 라이브러리를 이용해서 Proxy 객체를 생성해 내는 용도로 사용된다. xml의 <aop:aspectj-autoproxy></aop:aspectj-autoproxy> 설정과 같다
 @ComponentScan(basePackages = {"com.wedul.wedul_timeline*"})
 @EnableAutoConfiguration
+@EnableKafka
 public class RootApplicationContextConfig {
 }
