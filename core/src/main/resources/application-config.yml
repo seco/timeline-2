@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: development
+
+
+# develop
+---
+config:
+  kafka-topic:
+    item: wedul_timeline
+
+
+# 운영환경 설정
+---
+config:
+  kafka-topic:
+    item: wedul_timeline

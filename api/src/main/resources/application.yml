@@ -4,6 +4,7 @@ spring:
     active: development
     include:
       - spring
+      - config
 
 # 개발환경
 ---
