@@ -1,2 +1,2 @@
 rootProject.name = 'wedul_timeline'
-include 'core', 'api'
+include 'core', 'api', 'batch'
