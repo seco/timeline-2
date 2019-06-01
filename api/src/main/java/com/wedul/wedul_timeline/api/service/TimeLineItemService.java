@@ -1,6 +1,10 @@
-package com.wedul.wedul_timeline.api.item.service;
+package com.wedul.wedul_timeline.api.service;
 
+import com.wedul.wedul_timeline.core.entity.TimeLineItem;
+import com.wedul.wedul_timeline.core.repository.TimeLineItemRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -12,8 +16,14 @@ import org.springframework.stereotype.Service;
  * @since 2019-05-30
  **/
 @Service
-@RequiredArgsConstructor
-public class ItemService {
+@AllArgsConstructor
+public class TimeLineItemService {
+
+  private TimeLineItemRepository timeLineItemRepository;
+
+  public void insertTimeLineItem(TimeLineItem timeLineItem) {
+    timeLineItemRepository.save(timeLineItem);
+  }
 
   private final KafkaTemplate<String, String> kafkaTemplate;
 

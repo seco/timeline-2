@@ -1,6 +1,6 @@
-package com.wedul.wedul_timeline.api.item.controller;
+package com.wedul.wedul_timeline.api.controller;
 
-import com.wedul.wedul_timeline.api.item.service.ItemService;
+import com.wedul.wedul_timeline.api.service.TimeLineItemService;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ItemController {
 
-  private final ItemService itemService;
+  private final TimeLineItemService timeLineItemService;
 
   @GetMapping("")
   public ResponseEntity items() throws NotFoundException {
-    itemService.sendMessage("dbsafer");
+//    timeLineItemService.sendMessage("dbsafer");
     return ResponseEntity.ok("d");
   }
 

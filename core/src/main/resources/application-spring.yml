@@ -18,7 +18,7 @@ spring:
     tomcat:
       connection-properties: useUnicode=yes&characterEncoding=utf8;useSSL=false
 
-    url: jdbc:mysql://192.168.219.120:3307/wedulpos?useUnicode=yes&characterEncoding=utf8&autoReconnect=true
+    url: jdbc:mysql://192.168.219.120:3307/wedul?useUnicode=yes&characterEncoding=utf8&autoReconnect=true
     initialization-mode: always
     driver-class-name: com.mysql.jdbc.Driver
 
@@ -67,7 +67,7 @@ spring:
       connection-properties: useUnicode=true;characterEncoding=utf-8
 
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3307/wedulpos?useUnicode=yes&characterEncoding=UTF8&autoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3307/wedul?useUnicode=yes&characterEncoding=UTF8&autoReconnect=true
 
   jpa:
     show-sql: true

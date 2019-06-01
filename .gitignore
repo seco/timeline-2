@@ -66,3 +66,5 @@ out/*
 core/build/*
 web/build/*
 web/out/*
+
+*.log

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `wedul`.`timeline_item` (
   site_url char(255) not null comment '사이트 명',
   image_url char(255) not null comment '이미지 url',
   content char(255) not null comment '내용',
-  update_at int not null comment '업데이트 시간',
-  create_at int not null comment '생성 시간',
+  update_at LONG not null comment '업데이트 시간',
+  create_at LONG not null comment '생성 시간',
   KEY `wedul_timeline_sitye_type_IDX` (`site_type`,`site_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

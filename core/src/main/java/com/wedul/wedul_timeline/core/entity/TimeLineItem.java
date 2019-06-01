@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 /**
- * wedul_timeline
+ * timeline item entity
  *
  * @author wedul
  * @since 2019-05-31
@@ -20,7 +20,7 @@ import javax.persistence.*;
 public class TimeLineItem extends CommonEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long timelineId;
 
     @Enumerated(value = EnumType.ORDINAL)
