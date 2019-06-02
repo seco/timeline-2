@@ -1,5 +1,6 @@
 package com.wedul.wedul_timeline.core.entity;
 
+import com.wedul.wedul_timeline.core.type.EnumSiteType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,23 +13,22 @@ import javax.persistence.*;
  **/
 @Getter
 @Builder
-@Table(name = "timeline_item")
+@Table(name = "timeline_site")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "timeline_item")
-public class TimeLineItem extends CommonEntity {
+@Entity(name = "timeline_site")
+public class TimeLineSite extends CommonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long itemId;
+    private long siteId;
 
-    @ManyToOne
-    @JoinColumn(name = "site_id")
-    private TimeLineSite timeLineSite;
-
-    @Column
-    private String landingUrl;
+    @Enumerated(value = EnumType.ORDINAL)
+    private EnumSiteType siteType;
 
     @Column
-    private String content;
+    private String siteName;
+
+    @Column
+    private String siteUrl;
 
 }

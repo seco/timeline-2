@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 /**
  * 공통 dto 클래
@@ -18,7 +19,7 @@ import javax.persistence.MappedSuperclass;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class CommonEntity {
+public class CommonEntity implements Serializable {
 
   @CreatedDate
   private long updateAt = System.currentTimeMillis();

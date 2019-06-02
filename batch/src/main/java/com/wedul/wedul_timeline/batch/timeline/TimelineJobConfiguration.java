@@ -1,16 +1,25 @@
 package com.wedul.wedul_timeline.batch.timeline;
 
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
+import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.database.JpaItemWriter;
+import org.springframework.batch.item.database.JpaPagingItemReader;
+import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.persistence.EntityManagerFactory;
 
 /**
  * Time Job Configuration
@@ -20,16 +29,18 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "job.name", havingValue = TimelineJobConfiguration.JOB_NAME)
 public class TimelineJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-    private final TimelineItemReader timelineItemReader;
-    private final TimelineItemWriter timelineItemWriter;
+    private final EntityManagerFactory entityManagerFactory;
+    public final static String JOB_NAME = "timelineCrawlerJob";
+    private final int chunkSize = 10;
 
     @Bean
     public Job timelineCrawlerJob() {
-        return jobBuilderFactory.get("timelineCrawlerJob")
+        return jobBuilderFactory.get(JOB_NAME)
                 .incrementer(new RunIdIncrementer())
                 .start(timelineCrawlStep(null))
                 .build();
@@ -39,10 +50,42 @@ public class TimelineJobConfiguration {
     @JobScope
     public Step timelineCrawlStep(@Value("#{jobParameters[requestDate]}") String requestDate) {
         return stepBuilderFactory.get("timelineCrawlStep")
-                .<TimeLineItem, TimeLineItem>chunk(10)
-                .reader(timelineItemReader)
-                .writer(timelineItemWriter)
+                .<TimeLineSite, TimeLineItem>chunk(chunkSize)
+                .reader(timeLineSitePageReader())
+                .processor(payPagingProcessor())
+                .writer(timeLineItemJpaItemWriter())
                 .build();
+    }
+
+    @Bean
+    @StepScope
+    public JpaPagingItemReader<TimeLineSite> timeLineSitePageReader() {
+        return new JpaPagingItemReaderBuilder<TimeLineSite>()
+                .entityManagerFactory(entityManagerFactory)
+                .queryString("SELECT p FROM timeline_site p")
+                .pageSize(chunkSize)
+                .name("timeLineSitePageReader")
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public ItemProcessor<TimeLineSite, TimeLineItem> payPagingProcessor() {
+        return site -> {
+//            item.success();
+
+
+
+            return TimeLineItem.builder().build();
+        };
+    }
+
+    @Bean
+    @StepScope
+    public JpaItemWriter<TimeLineItem> timeLineItemJpaItemWriter() {
+        JpaItemWriter<TimeLineItem> writer = new JpaItemWriter<>();
+        writer.setEntityManagerFactory(entityManagerFactory);
+        return writer;
     }
 
 }
