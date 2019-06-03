@@ -10,8 +10,6 @@ import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,12 +27,15 @@ import javax.persistence.EntityManagerFactory;
  **/
 @Configuration
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "job.name", havingValue = TimelineJobConfiguration.JOB_NAME)
-public class TimelineJobConfiguration {
+@ConditionalOnProperty(name = "job.name", havingValue = TimeLineJobConfiguration.JOB_NAME)
+public class TimeLineJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
+    private final TimeLinePagingProcessor payPagingProcessor;
+    private final TimeLineItemJpaItemWriter timeLineItemJpaItemWriter;
+
     public final static String JOB_NAME = "timelineCrawlerJob";
     private final int chunkSize = 10;
 
@@ -52,8 +53,8 @@ public class TimelineJobConfiguration {
         return stepBuilderFactory.get("timelineCrawlStep")
                 .<TimeLineSite, TimeLineItem>chunk(chunkSize)
                 .reader(timeLineSitePageReader())
-                .processor(payPagingProcessor())
-                .writer(timeLineItemJpaItemWriter())
+                .processor(payPagingProcessor)
+                .writer(timeLineItemJpaItemWriter)
                 .build();
     }
 
@@ -66,26 +67,6 @@ public class TimelineJobConfiguration {
                 .pageSize(chunkSize)
                 .name("timeLineSitePageReader")
                 .build();
-    }
-
-    @Bean
-    @StepScope
-    public ItemProcessor<TimeLineSite, TimeLineItem> payPagingProcessor() {
-        return site -> {
-//            item.success();
-
-
-
-            return TimeLineItem.builder().build();
-        };
-    }
-
-    @Bean
-    @StepScope
-    public JpaItemWriter<TimeLineItem> timeLineItemJpaItemWriter() {
-        JpaItemWriter<TimeLineItem> writer = new JpaItemWriter<>();
-        writer.setEntityManagerFactory(entityManagerFactory);
-        return writer;
     }
 
 }

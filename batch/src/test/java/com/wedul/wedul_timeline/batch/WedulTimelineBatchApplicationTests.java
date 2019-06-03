@@ -1,6 +1,6 @@
 package com.wedul.wedul_timeline.batch;
 
-import com.wedul.wedul_timeline.batch.timeline.TimelineJobConfiguration;
+import com.wedul.wedul_timeline.batch.timeline.TimeLineJobConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
@@ -17,7 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@TestPropertySource(properties = {"job.name=" + TimelineJobConfiguration.JOB_NAME})
+@TestPropertySource(properties = {"job.name=" + TimeLineJobConfiguration.JOB_NAME})
 public class WedulTimelineBatchApplicationTests {
 
 	@Autowired

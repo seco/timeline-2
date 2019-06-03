@@ -1,0 +1,17 @@
+# 기본 환경설정
+spring:
+  profiles:
+    active: development
+    include: spring
+
+# 개발환경
+---
+spring:
+  profiles: development
+
+
+# 운영환경 설정
+---
+spring:
+  profiles: production
+

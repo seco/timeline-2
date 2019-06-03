@@ -23,10 +23,7 @@ public class WedulTimelineApplicationTests {
   public void test() {
     TimeLineItem timeLineItem = TimeLineItem.builder()
             .content("dbsafer")
-            .imageUrl("dd")
-            .siteName("zz")
-            .siteType(EnumSiteType.APT)
-            .siteUrl("zz")
+            .landingUrl("dd")
             .build();
 
     timeLineItemService.insertTimeLineItem(timeLineItem);
