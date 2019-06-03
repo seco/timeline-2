@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline.batch.timeline;
+package com.wedul.wedul_timeline.batch.job.timelineItem;
 
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @StepScope
-public class TimeLinePagingProcessor implements ItemProcessor<TimeLineSite, TimeLineItem> {
+public class TimeLineItemPagingProcessor implements ItemProcessor<TimeLineSite, TimeLineItem> {
 
     @Override
     public TimeLineItem process(TimeLineSite item) throws Exception {

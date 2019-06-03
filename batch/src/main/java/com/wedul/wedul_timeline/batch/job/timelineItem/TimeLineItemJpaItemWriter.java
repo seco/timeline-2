@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline.batch.timeline;
+package com.wedul.wedul_timeline.batch.job.timelineItem;
 
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import lombok.RequiredArgsConstructor;

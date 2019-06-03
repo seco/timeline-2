@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline.batch.timeline;
+package com.wedul.wedul_timeline.batch.job.timelineItem;
 
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
@@ -27,13 +27,13 @@ import javax.persistence.EntityManagerFactory;
  **/
 @Configuration
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "job.name", havingValue = TimeLineJobConfiguration.JOB_NAME)
-public class TimeLineJobConfiguration {
+@ConditionalOnProperty(name = "job.name", havingValue = TimeLineItemJobConfiguration.JOB_NAME)
+public class TimeLineItemJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
-    private final TimeLinePagingProcessor payPagingProcessor;
+    private final TimeLineItemPagingProcessor payPagingProcessor;
     private final TimeLineItemJpaItemWriter timeLineItemJpaItemWriter;
 
     public final static String JOB_NAME = "timelineCrawlerJob";

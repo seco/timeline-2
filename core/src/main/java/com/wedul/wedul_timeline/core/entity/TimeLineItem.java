@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 /**
- * timeline item entity
+ * timelineItem item entity
  *
  * @author wedul
  * @since 2019-05-31
