@@ -1,5 +1,7 @@
 package com.wedul.wedul_timeline.batch.service.job.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -9,13 +11,18 @@ import lombok.Data;
  * @since 2019-06-09
  **/
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WoowahanDto {
 
-    private String BusinessName;
+    @JsonProperty("BusinessName")
+    private String businessName;
 
-    private String Contents;
+    @JsonProperty("Contents")
+    private String contents;
 
-    private String JobTitle;
+    @JsonProperty("JobTitle")
+    private String jobTitle;
 
-    private String EDate;
+    @JsonProperty("EDate")
+    private String eDate;
 }

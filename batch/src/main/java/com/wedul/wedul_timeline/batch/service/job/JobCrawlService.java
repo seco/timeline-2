@@ -10,10 +10,4 @@ import com.wedul.wedul_timeline.batch.service.SiteCrawlerI;
  **/
 public abstract class JobCrawlService implements SiteCrawlerI {
 
-    abstract String title();
-
-    abstract String content();
-
-    abstract String mainImageUrl();
-
 }
