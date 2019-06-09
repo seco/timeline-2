@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class TimeLineItemPagingProcessor implements ItemProcessor<TimeLineSite, TimeLineItem> {
 
     @Override
-    public TimeLineItem process(TimeLineSite item) throws Exception {
+    public TimeLineItem process(TimeLineSite item) {
         return TimeLineItem.builder().build();
     }
 }

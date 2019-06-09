@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class CommonEntity implements Serializable {
+public abstract class CommonEntity implements Serializable {
 
   @CreatedDate
   private long updateAt = System.currentTimeMillis();

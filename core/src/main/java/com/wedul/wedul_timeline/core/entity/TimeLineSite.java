@@ -13,8 +13,9 @@ import javax.persistence.*;
  **/
 @Getter
 @Builder
-@Table(name = "timeline_site")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
+@Table(name = "timeline_site")
 @Entity(name = "timeline_site")
 public class TimeLineSite extends CommonEntity {
 
@@ -22,7 +23,7 @@ public class TimeLineSite extends CommonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long siteId;
 
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
     private EnumSiteType siteType;
 
     @Column
@@ -32,3 +33,4 @@ public class TimeLineSite extends CommonEntity {
     private String siteUrl;
 
 }
+
