@@ -1,7 +1,7 @@
 package com.wedul.wedul_timeline.batch.job;
 
 import com.wedul.wedul_timeline.batch.job.timelineItem.TimeLineItemJobConfiguration;
-import com.wedul.wedul_timeline.batch.service.job.DngnTeamService;
+import com.wedul.wedul_timeline.batch.service.job.WoowahanService;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,12 +24,12 @@ import java.io.IOException;
 public class JobCrawlTest {
 
   @Autowired
-  DngnTeamService dngnTeamService;
+  WoowahanService woowahanService;
 
   @Test
   public void title_valid() throws IOException {
     TimeLineSite timeLineSite = TimeLineSite.builder().siteUrl("https://www.notion.so/2c789a2c7b1a4cfca40b11afba678315").build();
 
-    dngnTeamService.crawl(timeLineSite);
+    woowahanService.crawl(timeLineSite);
   }
 }

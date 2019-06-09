@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Builder
 @Table(name = "timeline_item")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity(name = "timeline_item")
 public class TimeLineItem extends CommonEntity {
 
