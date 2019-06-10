@@ -19,7 +19,7 @@ import java.util.List;
 @Component
 @StepScope
 @RequiredArgsConstructor
-public class TimeLineItemJpaItemWriter extends JpaItemWriter<TimeLineItem> {
+public class TimeLineItemJpaItemWriter extends JpaItemWriter<List<TimeLineItem>> {
 
     private final EntityManagerFactory entityManagerFactory;
 
@@ -29,7 +29,7 @@ public class TimeLineItemJpaItemWriter extends JpaItemWriter<TimeLineItem> {
     }
 
     @Override
-    public void write(List<? extends TimeLineItem> items) {
+    public void write(List<? extends List<TimeLineItem>> items) {
         super.write(items);
     }
 }

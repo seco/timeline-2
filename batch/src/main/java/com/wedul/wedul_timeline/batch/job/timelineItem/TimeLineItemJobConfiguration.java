@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
 
 /**
  * Time Job Configuration
@@ -51,7 +52,7 @@ public class TimeLineItemJobConfiguration {
     @JobScope
     public Step timelineCrawlStep(@Value("#{jobParameters[requestDate]}") String requestDate) {
         return stepBuilderFactory.get("timelineCrawlStep")
-                .<TimeLineSite, TimeLineItem>chunk(chunkSize)
+                .<TimeLineSite, List<TimeLineItem>>chunk(chunkSize)
                 .reader(timeLineSitePageReader())
                 .processor(payPagingProcessor)
                 .writer(timeLineItemJpaItemWriter)

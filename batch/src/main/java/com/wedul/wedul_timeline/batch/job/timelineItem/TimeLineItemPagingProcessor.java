@@ -6,6 +6,9 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * wedul_timeline
  *
@@ -14,10 +17,10 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @StepScope
-public class TimeLineItemPagingProcessor implements ItemProcessor<TimeLineSite, TimeLineItem> {
+public class TimeLineItemPagingProcessor implements ItemProcessor<TimeLineSite, List<TimeLineItem>> {
 
     @Override
-    public TimeLineItem process(TimeLineSite item) {
-        return TimeLineItem.builder().build();
+    public List<TimeLineItem> process(TimeLineSite item) {
+        return Arrays.asList(TimeLineItem.builder().build());
     }
 }
