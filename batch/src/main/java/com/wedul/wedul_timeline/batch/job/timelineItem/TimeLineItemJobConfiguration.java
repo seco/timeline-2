@@ -31,7 +31,7 @@ import java.util.List;
  **/
 @Configuration
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "job.name", havingValue = TimeLineItemJobConfiguration.JOB_NAME)
+@ConditionalOnProperty(name = "spring.batch.job.names", havingValue = TimeLineItemJobConfiguration.JOB_NAME)
 public class TimeLineItemJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;

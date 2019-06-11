@@ -27,6 +27,9 @@ public class TimeLineItem extends CommonEntity {
     private TimeLineSite timeLineSite;
 
     @Column
+    private String sourceId;
+
+    @Column
     private String title;
 
     @Column

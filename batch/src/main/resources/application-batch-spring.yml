@@ -8,6 +8,9 @@ spring:
 ---
 spring:
   profiles: development
+  batch:
+    job:
+      names: timelineCrawlerJob
 
 # 운영환경 설정
 ---

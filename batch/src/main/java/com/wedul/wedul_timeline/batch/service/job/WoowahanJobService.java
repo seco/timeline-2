@@ -3,6 +3,7 @@ package com.wedul.wedul_timeline.batch.service.job;
 import com.wedul.wedul_timeline.batch.service.job.dto.WoowahanDto;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
+import com.wedul.wedul_timeline.core.util.HashUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -30,6 +31,8 @@ public class WoowahanJobService extends JobCrawlService {
         ret.forEach(woowahanDto -> {
             timeLineItems.add(TimeLineItem.builder().
                     landingUrl(timeLineSite.getSiteUrl())
+                    .timeLineSite(timeLineSite)
+                    .sourceId(HashUtil.sha256(woowahanDto.getJobTitle()))
                     .content(woowahanDto.getContents())
                     .title(woowahanDto.getJobTitle())
                     .build());
