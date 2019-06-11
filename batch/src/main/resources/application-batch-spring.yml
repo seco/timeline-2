@@ -9,7 +9,6 @@ spring:
 spring:
   profiles: development
 
-
 # 운영환경 설정
 ---
 spring:

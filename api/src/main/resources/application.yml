@@ -3,8 +3,8 @@ spring:
   profiles:
     active: development
     include:
-      - spring
-      - config
+      - api-spring
+      - api-config
 
 # 개발환경
 ---

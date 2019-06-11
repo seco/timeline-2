@@ -1,5 +1,7 @@
 package com.wedul.wedul_timeline.batch.job.timelineItem;
 
+import com.wedul.wedul_timeline.batch.job.JobCompletionListener;
+import com.wedul.wedul_timeline.batch.job.JpaItemListWriter;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +38,7 @@ public class TimeLineItemJobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
     private final TimeLineItemPagingProcessor payPagingProcessor;
-    private final TimeLineItemJpaItemWriter timeLineItemJpaItemWriter;
+    private final JobCompletionListener jobCompletionListener;
 
     public final static String JOB_NAME = "timelineCrawlerJob";
     private final int chunkSize = 10;
@@ -44,6 +47,7 @@ public class TimeLineItemJobConfiguration {
     public Job timelineCrawlerJob() {
         return jobBuilderFactory.get(JOB_NAME)
                 .incrementer(new RunIdIncrementer())
+                .listener(jobCompletionListener)
                 .start(timelineCrawlStep(null))
                 .build();
     }
@@ -55,7 +59,7 @@ public class TimeLineItemJobConfiguration {
                 .<TimeLineSite, List<TimeLineItem>>chunk(chunkSize)
                 .reader(timeLineSitePageReader())
                 .processor(payPagingProcessor)
-                .writer(timeLineItemJpaItemWriter)
+                .writer(listWriter())
                 .build();
     }
 
@@ -68,6 +72,12 @@ public class TimeLineItemJobConfiguration {
                 .pageSize(chunkSize)
                 .name("timeLineSitePageReader")
                 .build();
+    }
+
+    protected <T> JpaItemListWriter<T> listWriter() {
+        JpaItemWriter<T> writer = new JpaItemWriter<>();
+        writer.setEntityManagerFactory(entityManagerFactory);
+        return new JpaItemListWriter(writer);
     }
 
 }

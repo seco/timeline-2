@@ -17,7 +17,7 @@ import java.util.List;
  * @author wedul
  * @since 2019-06-09
  **/
-@Service
+@Service("WoowahanJobService")
 @Slf4j
 public class WoowahanJobService extends JobCrawlService {
 
