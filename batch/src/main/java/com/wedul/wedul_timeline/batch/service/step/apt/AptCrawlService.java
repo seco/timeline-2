@@ -1,6 +1,6 @@
-package com.wedul.wedul_timeline.batch.service.apt;
+package com.wedul.wedul_timeline.batch.service.step.apt;
 
-import com.wedul.wedul_timeline.batch.service.SiteCrawlerI;
+import com.wedul.wedul_timeline.batch.service.step.SiteCrawlerI;
 
 /**
  * 아파트 청약 관련 정보 크롤링 서비스

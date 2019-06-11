@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline.batch.service;
+package com.wedul.wedul_timeline.batch.service.step;
 
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;

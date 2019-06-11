@@ -1,6 +1,6 @@
-package com.wedul.wedul_timeline.batch.service.tech;
+package com.wedul.wedul_timeline.batch.service.step.tech;
 
-import com.wedul.wedul_timeline.batch.service.SiteCrawlerI;
+import com.wedul.wedul_timeline.batch.service.step.SiteCrawlerI;
 
 /**
  * It/기술 관련 크롤링 서비스

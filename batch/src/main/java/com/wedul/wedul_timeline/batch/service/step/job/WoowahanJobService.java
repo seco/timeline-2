@@ -1,6 +1,6 @@
-package com.wedul.wedul_timeline.batch.service.job;
+package com.wedul.wedul_timeline.batch.service.step.job;
 
-import com.wedul.wedul_timeline.batch.service.job.dto.WoowahanDto;
+import com.wedul.wedul_timeline.batch.service.step.job.dto.WoowahanDto;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.util.HashUtil;
