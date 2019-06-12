@@ -39,6 +39,7 @@ public class TimeLineItemJobConfiguration {
     private final EntityManagerFactory entityManagerFactory;
     private final TimeLineItemPagingProcessor payPagingProcessor;
     private final JobCompletionListener jobCompletionListener;
+    private final TimeLineItemItemWriter timeLineItemItemWriter;
 
     public final static String JOB_NAME = "timelineCrawlerJob";
     private final int chunkSize = 10;
@@ -59,7 +60,7 @@ public class TimeLineItemJobConfiguration {
                 .<TimeLineSite, List<TimeLineItem>>chunk(chunkSize)
                 .reader(timeLineSitePageReader())
                 .processor(payPagingProcessor)
-                .writer(listWriter())
+                .writer(timeLineItemItemWriter)
                 .build();
     }
 

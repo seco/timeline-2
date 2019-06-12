@@ -1,3 +1,14 @@
+logging:
+  level:
+    root: WARN
+    org.springframework: WARN
+    org.apache.kafka: WARN
+    com.wedul.wedul_timeline: WARN
+    java.sql: INFO
+    java.sql.ResultSet: INFO
+    com.zaxxer.hikari: ERROR
+
+
 spring:
   profiles:
     active: development
