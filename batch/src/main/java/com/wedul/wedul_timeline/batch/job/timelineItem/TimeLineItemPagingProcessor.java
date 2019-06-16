@@ -3,14 +3,13 @@ package com.wedul.wedul_timeline.batch.job.timelineItem;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wedul.wedul_timeline.batch.service.kafka.KafkaService;
-import com.wedul.wedul_timeline.batch.service.step.SiteCrawlerI;
+import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package com.wedul.wedul_timeline.batch.job;
 
 import com.wedul.wedul_timeline.batch.job.timelineItem.TimeLineItemJobConfiguration;
-import com.wedul.wedul_timeline.batch.service.step.job.WoowahanJobService;
+import com.wedul.wedul_timeline.batch.step.job.WoowahanJobService;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import org.junit.Test;
 import org.junit.runner.RunWith;

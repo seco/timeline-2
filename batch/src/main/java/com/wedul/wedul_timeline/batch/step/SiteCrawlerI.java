@@ -1,8 +1,7 @@
-package com.wedul.wedul_timeline.batch.service.step;
+package com.wedul.wedul_timeline.batch.step;
 
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;

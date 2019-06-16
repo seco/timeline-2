@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline.batch.service.step.job.dto;
+package com.wedul.wedul_timeline.batch.step.job.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
