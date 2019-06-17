@@ -5,6 +5,7 @@ import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.repository.TimeLineItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,9 +20,14 @@ public class TimeLineItemService {
 
     private final TimeLineItemRepository timeLineItemRepository;
 
-    @CacheEvict(cacheNames = RedisRepositoryConfig.TIME_LINE_ITME, key = "#timeLineItem.sourceId")
+    @CacheEvict(cacheNames = RedisRepositoryConfig.TIME_LINE_ITEM, key = "#timeLineItem.sourceId")
     public void setTimeLineItem(TimeLineItem timeLineItem) {
         timeLineItemRepository.save(timeLineItem);
+    }
+
+    @Cacheable(cacheNames = RedisRepositoryConfig.TIME_LINE_ITEM, key = "#sourceId", sync = true)
+    public TimeLineItem getTimeLineItem(String sourceId) {
+        return timeLineItemRepository.findBySourceId(sourceId);
     }
 
 }

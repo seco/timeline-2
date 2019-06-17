@@ -1,17 +1,14 @@
 package com.wedul.wedul_timeline.batch.service.kafka;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.service.TimeLineItemService;
+import com.wedul.wedul_timeline.core.util.ObjectHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 /**
  * wedul_timeline
@@ -31,15 +28,11 @@ public class KafkaService {
     private String topic;
 
     @KafkaListener(topics = "${config.kafka-topic.item}")
-    public void pointChangedListener(String data) {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public void pointChangedListener(String data) throws Exception {
+        TimeLineItem timeLineItem = ObjectHelper.getInstance().readValue(data, TimeLineItem.class);
+        TimeLineItem savedTimeLineItem = timeLineItemService.getTimeLineItem(timeLineItem.getSourceId());
 
-        try {
-            TimeLineItem timeLineItem = objectMapper.readValue(data, TimeLineItem.class);
-            timeLineItemService.setTimeLineItem(timeLineItem);
-        } catch (IOException e) {
-            log.error("Fail save timeline item", e);
-        }
+        timeLineItemService.setTimeLineItem(null != savedTimeLineItem ? savedTimeLineItem : timeLineItem);
     }
 
     public void sendMessage(String data) {

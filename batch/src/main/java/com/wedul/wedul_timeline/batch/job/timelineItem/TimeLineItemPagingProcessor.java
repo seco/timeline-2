@@ -1,11 +1,11 @@
 package com.wedul.wedul_timeline.batch.job.timelineItem;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wedul.wedul_timeline.batch.service.kafka.KafkaService;
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
+import com.wedul.wedul_timeline.core.util.ObjectHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -38,10 +38,9 @@ public class TimeLineItemPagingProcessor implements ItemProcessor<TimeLineSite, 
         List<TimeLineItem> timeLineItems = siteCrawlerI.crawl(item);
 
         timeLineItems.forEach(timeLineItem -> {
-            ObjectMapper objectMapper = new ObjectMapper();
             try {
-                kafkaService.sendMessage(objectMapper.writeValueAsString(timeLineItem));
-            } catch (JsonProcessingException e) {
+                kafkaService.sendMessage(ObjectHelper.getInstance().writeValueAsString(timeLineItem));
+            } catch (Exception e) {
                 log.info("카프카에 크롤링 데이터를 넣는데 실패하였습니다.");
             }
         });

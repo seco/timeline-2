@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface TimeLineItemRepository extends CrudRepository<TimeLineItem, Long> {
+
+    TimeLineItem findBySourceId(String sourceId);
+
 }
