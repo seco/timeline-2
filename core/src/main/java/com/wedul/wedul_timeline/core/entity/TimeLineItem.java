@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @author wedul
  * @since 2019-05-31
  **/
-@Getter
+@Data
 @Builder
 @Table(name = "timeline_item")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)

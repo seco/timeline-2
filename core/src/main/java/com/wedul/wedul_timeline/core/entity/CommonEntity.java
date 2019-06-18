@@ -22,8 +22,8 @@ import java.io.Serializable;
 public abstract class CommonEntity implements Serializable {
 
   @CreatedDate
-  private long updateAt = System.currentTimeMillis();
+  private long updateAt;
 
   @LastModifiedDate
-  private long createAt = System.currentTimeMillis();
+  private long createAt;
 }
