@@ -2,6 +2,7 @@ package com.wedul.wedul_timeline.core.config.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
 import org.redisson.spring.cache.CacheConfig;
 import org.redisson.spring.cache.RedissonSpringCacheManager;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -34,6 +35,8 @@ public class RedisRepositoryConfig {
   private final RedisProperties redisProperties;
   public static final String TIME_LINE_ITEM = "TimeLineItem";
 
+  private final RedissonClient redissonClient;
+
   @Bean
   public RedisConnectionFactory redisConnectionFactory() {
     return new JedisConnectionFactory(new RedisStandaloneConfiguration(redisProperties.getHost(), redisProperties.getPort()));
@@ -54,7 +57,7 @@ public class RedisRepositoryConfig {
             TimeUnit.SECONDS.toMillis(3600),
             TimeUnit.SECONDS.toMillis(3600)));
 
-    return new RedissonSpringCacheManager(Redisson.create(), config);
+    return new RedissonSpringCacheManager(redissonClient, config);
   }
 
 

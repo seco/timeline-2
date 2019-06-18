@@ -1,12 +1,3 @@
-logging:
-  level:
-    root: WARN
-    org.springframework: WARN
-    org.apache.kafka: WARN
-    com.wedul.wedul_timeline: WARN
-    java.sql: INFO
-    java.sql.ResultSet: INFO
-    com.zaxxer.hikari: ERROR
 
 
 spring:
@@ -20,9 +11,32 @@ config:
   kafka-topic:
     item: wedul_timeline
 
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG
+    org.apache.kafka: WARN
+    com.wedul.wedul_timeline: DEBUG
+    java.sql: DEBUG
+    java.sql.ResultSet: DEBUG
+    com.zaxxer.hikari: ERROR
+  pattern:
+    file: ./logs/batch.%d{yyyy-MM-dd}.log
 
 # 운영환경 설정
 ---
 config:
   kafka-topic:
     item: wedul_timeline
+
+logging:
+  level:
+    root: WARN
+    org.springframework: WARN
+    org.apache.kafka: WARN
+    com.wedul.wedul_timeline: WARN
+    java.sql: DEBUG
+    java.sql.ResultSet: DEBUG
+    com.zaxxer.hikari: ERROR
+  pattern:
+    file: ./logs/batch.%d{yyyy-MM-dd}.log
