@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -32,18 +33,25 @@ public class TimeLineItemPagingProcessor implements ItemProcessor<TimeLineSite, 
     private KafkaService kafkaService;
 
     @Override
-    public List<TimeLineItem> process(TimeLineSite item) throws IOException {
-        SiteCrawlerI siteCrawlerI = (SiteCrawlerI) applicationContext.getBean(item.getSiteName() + "Service");
+    public List<TimeLineItem> process(TimeLineSite item) {
+        try {
+            SiteCrawlerI siteCrawlerI = (SiteCrawlerI) applicationContext.getBean(item.getSiteName() + "Service");
 
-        List<TimeLineItem> timeLineItems = siteCrawlerI.crawl(item);
+            List<TimeLineItem> timeLineItems = siteCrawlerI.crawl(item);
 
-        timeLineItems.forEach(timeLineItem -> {
-            try {
-                kafkaService.sendMessage(ObjectHelper.getInstance().writeValueAsString(timeLineItem));
-            } catch (Exception e) {
-                log.info("카프카에 크롤링 데이터를 넣는데 실패하였습니다.");
-            }
-        });
-        return timeLineItems;
+            timeLineItems.forEach(timeLineItem -> {
+                try {
+                    kafkaService.sendMessage(ObjectHelper.getInstance().writeValueAsString(timeLineItem));
+                } catch (Exception e) {
+                    log.info("카프카에 크롤링 데이터를 넣는데 실패하였습니다.", e);
+                }
+            });
+
+            return timeLineItems;
+        } catch (Exception e) {
+            log.error("데이터를 가져오는데 실패하였습니다.", e);
+        }
+
+        return Collections.emptyList();
     }
 }

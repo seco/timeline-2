@@ -32,7 +32,8 @@ public class WoowahanJobService extends JobCrawlService {
             timeLineItems.add(TimeLineItem.builder().
                     landingUrl(timeLineSite.getSiteUrl())
                     .timeLineSite(timeLineSite)
-                    .sourceId(HashUtil.sha256(woowahanDto.getJobTitle()))
+                    .sourceId(getSourceId(woowahanDto.getJobTitle()))
+                    .logoUrl("https://www.woowahan.com/img/pc/common-logo.png")
                     .content(woowahanDto.getContents())
                     .title(woowahanDto.getJobTitle())
                     .build());

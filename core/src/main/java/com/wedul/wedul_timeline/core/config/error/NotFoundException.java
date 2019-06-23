@@ -12,4 +12,8 @@ public class NotFoundException extends CustomException {
     super("잘못된 페이지 입니다.", 404);
   }
 
+  public NotFoundException(String exMsg) {
+    super(exMsg, 404);
+  }
+
 }

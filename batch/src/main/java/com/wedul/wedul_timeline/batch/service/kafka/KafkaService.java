@@ -31,8 +31,12 @@ public class KafkaService {
     public void pointChangedListener(String data) throws Exception {
         TimeLineItem timeLineItem = ObjectHelper.getInstance().readValue(data, TimeLineItem.class);
         TimeLineItem savedTimeLineItem = timeLineItemService.getTimeLineItem(timeLineItem.getSourceId());
-
-        timeLineItemService.setTimeLineItem(null != savedTimeLineItem ? savedTimeLineItem : timeLineItem);
+        if (null != savedTimeLineItem) {
+            savedTimeLineItem.copy(timeLineItem);
+            timeLineItemService.setTimeLineItem(savedTimeLineItem);
+        } else {
+            timeLineItemService.setTimeLineItem(timeLineItem);
+        }
     }
 
     public void sendMessage(String data) {

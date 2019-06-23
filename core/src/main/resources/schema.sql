@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `wedul`.`timeline_item` (
    site_id int not null comment '사이트 타입',
    source_id char(64) not null comment '고유 아이디',
    landing_url char(255) not null comment '랜딩 url',
+   logo_url char(255) not null comment 'logo url',
    title char(255) not null comment '타이틀',
    content text not null comment '내용',
    update_at LONG not null comment '업데이트 시간',

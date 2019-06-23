@@ -36,6 +36,19 @@ public class TimeLineItem extends CommonEntity {
     private String landingUrl;
 
     @Column
+    private String logoUrl;
+
+    @Column
     private String content;
+
+    public void copy(TimeLineItem timeLineItem) {
+        this.setSourceId(timeLineItem.getSourceId());
+        this.setTitle(timeLineItem.getTitle());
+        this.setLandingUrl(timeLineItem.getLandingUrl());
+        this.setLogoUrl(timeLineItem.getLogoUrl());
+        this.setContent(timeLineItem.getContent());
+        this.setTimeLineSite(timeLineSite = timeLineItem.getTimeLineSite());
+        this.setUpdateAt(System.currentTimeMillis());
+    }
 
 }

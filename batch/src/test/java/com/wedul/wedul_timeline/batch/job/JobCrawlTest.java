@@ -1,8 +1,10 @@
 package com.wedul.wedul_timeline.batch.job;
 
 import com.wedul.wedul_timeline.batch.job.timelineItem.TimeLineItemJobConfiguration;
+import com.wedul.wedul_timeline.batch.step.job.KakaoJobService;
 import com.wedul.wedul_timeline.batch.step.job.WoowahanJobService;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
+import lombok.RequiredArgsConstructor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +22,24 @@ import java.io.IOException;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@RequiredArgsConstructor
 @TestPropertySource(properties = {"job.name=" + TimeLineItemJobConfiguration.JOB_NAME})
 public class JobCrawlTest {
 
-  @Autowired
-  WoowahanJobService woowahanService;
+  private WoowahanJobService woowahanService;
+  private KakaoJobService kakaoJobService;
 
   @Test
   public void title_valid() throws IOException {
     TimeLineSite timeLineSite = TimeLineSite.builder().siteUrl("https://www.woowahan.com/jobapi/jobs/list?searchword=w011600&cc=").build();
 
     woowahanService.crawl(timeLineSite);
+  }
+
+  @Test
+  public void kakao_service() throws Exception {
+    TimeLineSite timeLineSite = TimeLineSite.builder().siteUrl("https://careers.kakao.com/jobs").build();
+
+    kakaoJobService.crawl(timeLineSite);
   }
 }

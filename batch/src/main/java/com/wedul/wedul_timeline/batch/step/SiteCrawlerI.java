@@ -16,4 +16,8 @@ public interface SiteCrawlerI {
 
     List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException;
 
+    String getSourceId(String landingUri);
+
+    String removeTag(String text);
+
 }
