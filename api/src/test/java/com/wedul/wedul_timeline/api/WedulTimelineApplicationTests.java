@@ -1,6 +1,6 @@
 package com.wedul.wedul_timeline.api;
 
-import com.wedul.wedul_timeline.api.service.TimeLineItemService;
+import com.wedul.wedul_timeline.api.service.TimeLineItemApiService;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.repository.TimeLineSiteRepository;
 import org.assertj.core.util.Lists;
@@ -17,7 +17,7 @@ import java.util.List;
 public class WedulTimelineApplicationTests {
 
   @Autowired
-  private TimeLineItemService timeLineItemService;
+  private TimeLineItemApiService timeLineItemService;
 
   @Autowired
   private TimeLineSiteRepository timeLineSiteRepository;

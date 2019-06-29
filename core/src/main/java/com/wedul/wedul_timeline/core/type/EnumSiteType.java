@@ -1,6 +1,7 @@
 package com.wedul.wedul_timeline.core.type;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * site type
@@ -8,8 +9,9 @@ import lombok.AllArgsConstructor;
  * @author wedul
  * @since 2019-05-31
  **/
+@Getter
 @AllArgsConstructor
-public enum  EnumSiteType {
+public enum EnumSiteType {
 
     JOB(0),
     TECH(1),

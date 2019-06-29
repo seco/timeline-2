@@ -1,5 +1,8 @@
 package com.wedul.wedul_timeline.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,8 +25,9 @@ public class TimeLineItem extends CommonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long itemId;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "site_id")
+    @JsonBackReference
     private TimeLineSite timeLineSite;
 
     @Column

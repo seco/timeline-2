@@ -4,6 +4,10 @@ spring:
     active: development
     include: config
 
+server:
+  servlet:
+    context-path: /timeline
+
 # 개발환경
 ---
 spring:
