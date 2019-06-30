@@ -66,5 +66,7 @@ out/*
 core/build/*
 web/build/*
 web/out/*
+api/build/*
+batch/build/*
 
 *.log

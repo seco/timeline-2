@@ -12,10 +12,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("com.wedul.wedul_timeline.core")
 @EntityScan("com.wedul.wedul_timeline.core.entity")
 @EnableJpaRepositories(basePackages = "com.wedul.wedul_timeline.core")
-public class WedulTimelineBatchApplication {
+public class WedulTimeLineBatchApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WedulTimelineBatchApplication.class, args);
+		SpringApplication.run(WedulTimeLineBatchApplication.class, args);
 	}
 
 }

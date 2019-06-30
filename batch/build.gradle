@@ -1,3 +1,5 @@
+apply plugin: 'application'
+
 dependencies {
 	compile project(':core')
 
@@ -9,3 +11,6 @@ dependencies {
 	compile 'org.jsoup:jsoup:1.12.1'
 
 }
+
+mainClassName = 'com.wedul.wedul_timeline.batch.WedulTimeLineBatchApplication'
+
