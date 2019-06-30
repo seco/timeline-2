@@ -3,7 +3,6 @@ package com.wedul.wedul_timeline.batch.step.job;
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.util.HashUtil;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**

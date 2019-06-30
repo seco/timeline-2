@@ -18,4 +18,20 @@ public enum EnumSiteType {
     APT(2);
 
     private int number;
+
+    /**
+     * site type 가져오기
+     *
+     * @param siteType
+     * @return
+     */
+    public static EnumSiteType getSiteType(String siteType) {
+        for (EnumSiteType enumSityeType: EnumSiteType.values()) {
+            if (enumSityeType.toString().equals(siteType)) {
+                return enumSityeType;
+            }
+        }
+
+        return null;
+    }
 }

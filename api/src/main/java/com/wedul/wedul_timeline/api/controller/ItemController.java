@@ -1,5 +1,6 @@
 package com.wedul.wedul_timeline.api.controller;
 
+import com.wedul.wedul_timeline.api.dto.PageRequest;
 import com.wedul.wedul_timeline.api.service.TimeLineItemApiService;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.type.EnumSiteType;
@@ -33,8 +34,8 @@ public class ItemController {
    * @throws NotFoundException
    */
   @GetMapping("")
-  public ResponseEntity timeLineItems(Pageable pageable) throws NotFoundException {
-    return ResponseEntity.ok(timeLineItemService.timeLineItems(pageable));
+  public ResponseEntity timeLineItems(PageRequest pageRequest) throws NotFoundException {
+    return ResponseEntity.ok(timeLineItemService.timeLineItems(pageRequest.of()));
   }
 
   /**
@@ -45,8 +46,8 @@ public class ItemController {
    * @throws NotFoundException
    */
   @GetMapping("/site/{type}")
-  public ResponseEntity timeLineItemsBySiteType(Pageable pageable, @PathVariable String type) throws NotFoundException {
-    return ResponseEntity.ok(timeLineItemService.timeLineItemsBySiteType(pageable, type));
+  public ResponseEntity timeLineItemsBySiteType(PageRequest pageRequest, @PathVariable String type) throws NotFoundException {
+    return ResponseEntity.ok(timeLineItemService.timeLineItemsBySiteType(pageRequest.of("update_at"), type));
   }
 
 }

@@ -45,9 +45,9 @@ public class TimeLineItemApiService {
      */
     @Transactional
     public Page<TimeLineItem> timeLineItemsBySiteType(Pageable pageable, String type) {
-        EnumSiteType enumSiteType = EnumSiteType.valueOf(type);
-        TimeLineSite timeLineSite = TimeLineSite.builder().siteId(enumSiteType.getNumber()).build();
-        Page<TimeLineItem> timeLineItems = timeLineItemRepository.findAllByTimeLineSite(pageable, timeLineSite);
+        EnumSiteType enumSiteType = EnumSiteType.getSiteType(type);
+        if (null == enumSiteType) throw new NotFoundException();
+        Page<TimeLineItem> timeLineItems = timeLineItemRepository.findAllBySiteType(pageable, type);
 
         if (timeLineItems == null) throw new NotFoundException();
         return timeLineItems;
