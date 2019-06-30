@@ -47,7 +47,7 @@ public class ItemController {
    */
   @GetMapping("/site/{type}")
   public ResponseEntity timeLineItemsBySiteType(PageRequest pageRequest, @PathVariable String type) throws NotFoundException {
-    return ResponseEntity.ok(timeLineItemService.timeLineItemsBySiteType(pageRequest.of("update_at"), type));
+    return ResponseEntity.ok(timeLineItemService.timeLineItemsBySiteType(pageRequest.of("update_at"), type.toUpperCase()));
   }
 
 }

@@ -40,6 +40,7 @@ public class TimeLineItemPagingProcessor implements ItemProcessor<TimeLineSite, 
 
             timeLineItems.forEach(timeLineItem -> {
                 try {
+                    timeLineItem.setCopyTimeLineSite(item);
                     kafkaService.sendMessage(ObjectHelper.getInstance().writeValueAsString(timeLineItem));
                 } catch (Exception e) {
                     log.info("카프카에 크롤링 데이터를 넣는데 실패하였습니다.", e);

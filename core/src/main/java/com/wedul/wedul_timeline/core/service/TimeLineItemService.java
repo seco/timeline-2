@@ -8,6 +8,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 /**
  * wedul_timeline
  *
@@ -20,14 +22,18 @@ public class TimeLineItemService {
 
     private final TimeLineItemRepository timeLineItemRepository;
 
+    @Transactional
     @CacheEvict(cacheNames = RedisRepositoryConfig.TIME_LINE_ITEM, key = "#timeLineItem.sourceId")
     public void setTimeLineItem(TimeLineItem timeLineItem) {
         timeLineItemRepository.save(timeLineItem);
     }
 
+    @Transactional
     @Cacheable(cacheNames = RedisRepositoryConfig.TIME_LINE_ITEM, key = "#sourceId", sync = true)
     public TimeLineItem getTimeLineItem(String sourceId) {
-        return timeLineItemRepository.findBySourceId(sourceId);
+        TimeLineItem timeLineItem = timeLineItemRepository.findBySourceId(sourceId);
+        timeLineItem.getTimeLineSite();
+        return timeLineItem;
     }
 
 }

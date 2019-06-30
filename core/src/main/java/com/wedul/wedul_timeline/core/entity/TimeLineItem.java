@@ -30,6 +30,9 @@ public class TimeLineItem extends CommonEntity {
     @JsonBackReference
     private TimeLineSite timeLineSite;
 
+    @Transient
+    private TimeLineSite copyTimeLineSite;
+
     @Column
     private String sourceId;
 
@@ -51,7 +54,6 @@ public class TimeLineItem extends CommonEntity {
         this.setLandingUrl(timeLineItem.getLandingUrl());
         this.setLogoUrl(timeLineItem.getLogoUrl());
         this.setContent(timeLineItem.getContent());
-        this.setTimeLineSite(timeLineSite = timeLineItem.getTimeLineSite());
         this.setUpdateAt(System.currentTimeMillis());
     }
 
