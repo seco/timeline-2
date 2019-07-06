@@ -32,7 +32,10 @@ public class TimeLineItemService {
     @Cacheable(cacheNames = RedisRepositoryConfig.TIME_LINE_ITEM, key = "#sourceId", sync = true)
     public TimeLineItem getTimeLineItem(String sourceId) {
         TimeLineItem timeLineItem = timeLineItemRepository.findBySourceId(sourceId);
-        timeLineItem.getTimeLineSite();
+        if (null != timeLineItem) {
+            timeLineItem.getTimeLineSite();
+        }
+
         return timeLineItem;
     }
 
