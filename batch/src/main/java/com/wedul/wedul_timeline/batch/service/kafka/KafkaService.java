@@ -1,12 +1,10 @@
 package com.wedul.wedul_timeline.batch.service.kafka;
 
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
-import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.service.TimeLineItemService;
 import com.wedul.wedul_timeline.core.util.ObjectHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;

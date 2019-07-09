@@ -30,10 +30,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
 
-  redis:
-    host: 192.168.219.120
-    port: 36379
-
   session:
     store-type: redis
 
@@ -76,11 +72,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
-
-  redis:
-    host: 127.0.0.1
-    port: 36379
-
 
   session:
     store-type: redis
