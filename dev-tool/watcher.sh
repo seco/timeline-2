@@ -9,7 +9,7 @@ echo $processCnt
 if [ $processCnt -lt 2 ]; then
 echo "restart java module"
 cd /var/services/homes/wedul/project
-nohup java -jar -Dspring.profiles.active=dev api-1.0.0.war &
+nohup java -jar -Dspring.profiles.active=production api-1.0.0.war &
 fi
 
 done

@@ -11,9 +11,14 @@ spring:
   batch:
     job:
       names: timelineCrawlerJob
+      enabled: false
 
 # 운영환경 설정
 ---
 spring:
   profiles: production
+  batch:
+    job:
+      names: timelineCrawlerJob
+      enabled: false
 

@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableBatchProcessing
+@EnableScheduling
 @SpringBootApplication
 @ComponentScan("com.wedul.wedul_timeline.core")
 @EntityScan("com.wedul.wedul_timeline.core.entity")
