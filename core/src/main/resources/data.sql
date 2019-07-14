@@ -10,4 +10,4 @@ insert ignore into timeline_site(site_type, site_name, site_url, update_at, crea
 -- 우아한 형제들
 INSERT ignore INTO timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'WoowahanTech', 'https://woowabros.github.io/feed.xml', 1563091845, 1563091845);
 -- 줌 인터넷
-INSERT ignore INTO timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'ZoomInternetTech', 'https://zuminternet.github.io/feed.xml', 1563092630, 1563092630);
+INSERT ignore INTO timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'ZumInternetTech', 'https://zuminternet.github.io/feed.xml', 1563092630, 1563092630);

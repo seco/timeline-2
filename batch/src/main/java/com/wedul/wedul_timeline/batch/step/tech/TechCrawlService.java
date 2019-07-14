@@ -2,7 +2,6 @@ package com.wedul.wedul_timeline.batch.step.tech;
 
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.util.HashUtil;
-import org.springframework.stereotype.Service;
 
 import java.util.regex.Pattern;
 
