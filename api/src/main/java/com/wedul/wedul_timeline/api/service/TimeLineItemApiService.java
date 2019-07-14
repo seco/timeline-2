@@ -2,7 +2,6 @@ package com.wedul.wedul_timeline.api.service;
 
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
-import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.repository.TimeLineItemRepository;
 import com.wedul.wedul_timeline.core.type.EnumSiteType;
 import lombok.RequiredArgsConstructor;
