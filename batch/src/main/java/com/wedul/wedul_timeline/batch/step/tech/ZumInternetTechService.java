@@ -3,6 +3,7 @@ package com.wedul.wedul_timeline.batch.step.tech;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
@@ -35,7 +36,7 @@ public class ZumInternetTechService extends TechCrawlService {
                         .landingUrl(ele.select("link").text())
                         .timeLineSite(timeLineSite)
                         .logoUrl(LOGO_PNG_URL)
-                        .content(Jsoup.clean(ele.select("description").html(), Whitelist.basic()))
+                        .content(StringEscapeUtils.unescapeHtml4(Jsoup.clean(ele.select("description").html(), Whitelist.basic())))
                         .build();
 
                 timeLineItems.add(timeLineItem);
