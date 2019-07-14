@@ -12,6 +12,7 @@ spring:
     job:
       names: timelineCrawlerJob
       enabled: false
+#    initialize-schema: always
 
 # 운영환경 설정
 ---

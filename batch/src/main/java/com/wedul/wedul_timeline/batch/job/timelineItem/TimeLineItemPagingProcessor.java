@@ -1,6 +1,5 @@
 package com.wedul.wedul_timeline.batch.job.timelineItem;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wedul.wedul_timeline.batch.service.kafka.KafkaService;
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
