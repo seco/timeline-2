@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class ZumInternetTechService extends TechCrawlService {
 
-    private static final String LOGO_PNG_URL = "https://zuminternet.github.io//images/custom/img_zum_z_white.png";
+    private static final String LOGO_PNG_URL = "http://lego.zumst.com/resources/current/images/img_logo_2x_20190604.png";
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
