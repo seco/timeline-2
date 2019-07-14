@@ -1,16 +1,17 @@
 package com.wedul.wedul_timeline.api.controller;
 
+import com.wedul.wedul_timeline.api.dto.ItemReqDto;
 import com.wedul.wedul_timeline.api.dto.PageRequest;
 import com.wedul.wedul_timeline.api.service.TimeLineItemApiService;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
-import com.wedul.wedul_timeline.core.type.EnumSiteType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.text.ParseException;
 
 
 /**
@@ -34,8 +35,8 @@ public class ItemController {
    * @throws NotFoundException
    */
   @GetMapping("")
-  public ResponseEntity timeLineItems(PageRequest pageRequest) throws NotFoundException {
-    return ResponseEntity.ok(timeLineItemService.timeLineItems(pageRequest.of()));
+  public ResponseEntity timeLineItems(PageRequest pageRequest, ItemReqDto itemReqDto) throws NotFoundException, ParseException {
+    return ResponseEntity.ok(timeLineItemService.timeLineItems(pageRequest.of(itemReqDto.hasCondition() ? "update_at" : "updateAt"), itemReqDto));
   }
 
   /**
@@ -46,8 +47,8 @@ public class ItemController {
    * @throws NotFoundException
    */
   @GetMapping("/site/{type}")
-  public ResponseEntity timeLineItemsBySiteType(PageRequest pageRequest, @PathVariable String type) throws NotFoundException {
-    return ResponseEntity.ok(timeLineItemService.timeLineItemsBySiteType(pageRequest.of("update_at"), type.toUpperCase()));
+  public ResponseEntity timeLineItemsBySiteType(PageRequest pageRequest, ItemReqDto itemReqDto, @PathVariable String type) throws NotFoundException, ParseException {
+    return ResponseEntity.ok(timeLineItemService.timeLineItemsBySiteType(pageRequest.of("update_at"), type.toUpperCase(), itemReqDto));
   }
 
 }

@@ -20,9 +20,68 @@ public interface TimeLineItemRepository extends JpaRepository<TimeLineItem, Long
     TimeLineItem findBySourceId(String sourceId);
 
     @Query(
-        value = "SELECT * FROM timeline_item t JOIN timeline_site s on t.site_id = s.site_id WHERE s.site_type = :siteType",
-        nativeQuery = true
+            value = "SELECT * FROM timeline_item t JOIN timeline_site s on t.site_id = s.site_id WHERE s.site_type = :siteType",
+            nativeQuery = true
     )
     Page<TimeLineItem> findAllBySiteType(Pageable pageable, @Param("siteType") String siteType);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM timeline_item t " +
+                    "JOIN timeline_site s " +
+                    "on t.site_id = s.site_id " +
+                    "WHERE s.site_type = :siteType " +
+                    "and (t.title like CONCAT('%',:searchQuery,'%') or t.content like CONCAT('%',:searchQuery,'%'))",
+            nativeQuery = true
+    )
+    Page<TimeLineItem> findAllBySiteTypeAndSearchQuery(Pageable pageable, @Param("siteType") String siteType, @Param("searchQuery") String searchQuery);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM timeline_item t " +
+                    "JOIN timeline_site s " +
+                    "on t.site_id = s.site_id " +
+                    "WHERE s.site_type = :siteType " +
+                    "and t.update_at >= :startDate and t.update_at <= :endDate " +
+                    "and (t.title like CONCAT('%',:searchQuery,'%') or t.content like CONCAT('%',:searchQuery,'%'))",
+            nativeQuery = true
+    )
+    Page<TimeLineItem> findAllBySiteTypeAndSearchQueryAndDate(Pageable pageable, @Param("siteType") String siteType, @Param("searchQuery") String searchQuery, @Param("startDate") long startDate, @Param("endDate") long endDate);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM timeline_item t " +
+                    "JOIN timeline_site s " +
+                    "on t.site_id = s.site_id " +
+                    "WHERE s.site_type = :siteType " +
+                    "and t.update_at >= :startDate and t.update_at <= :endDate",
+            nativeQuery = true
+    )
+    Page<TimeLineItem> findAllBySiteTypeAndSearchDate(Pageable pageable, @Param("siteType") String siteType, @Param("startDate") long startDate, @Param("endDate") long endDate);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM timeline_item t " +
+                    "WHERE t.update_at >= :startDate and t.update_at <= :endDate " +
+                    "and (t.title like CONCAT('%',:searchQuery,'%') or t.content like CONCAT('%',:searchQuery,'%'))",
+            nativeQuery = true
+    )
+    Page<TimeLineItem> findAllByTitleLikeAndContentLikeAndUpdateAtBetween(Pageable pageable, @Param("searchQuery") String searchQuery, @Param("startDate") long startDate, @Param("endDate") long endDate);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM timeline_item t " +
+                    "WHERE t.update_at >= :startDate and t.update_at <= :endDate ",
+            nativeQuery = true
+    )
+    Page<TimeLineItem> findAllByUpdateAtBetween(Pageable pageable, @Param("startDate") long startDate, @Param("endDate") long endDate);
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM timeline_item t " +
+                    "where t.title like CONCAT('%',:searchQuery,'%') or t.content like CONCAT('%',:searchQuery,'%')",
+            nativeQuery = true
+    )
+    Page<TimeLineItem> findAllByTitleLikeAndContentLike(Pageable pageable, @Param("searchQuery") String searchQuery);
 
 }
