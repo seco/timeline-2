@@ -55,6 +55,8 @@ subprojects {
 
         compile 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
 
+        compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+
         // redis
         compile ('org.springframework.boot:spring-boot-starter-data-redis') {
             exclude group: 'io.lettuce', module: 'lettuce-core'
