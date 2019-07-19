@@ -1,6 +1,8 @@
 package com.wedul.wedul_timeline.batch.step.tech;
 
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
+import com.wedul.wedul_timeline.core.entity.TimeLineItem;
+import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.util.HashUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -62,6 +64,17 @@ public abstract class TechCrawlService implements SiteCrawlerI {
         }
 
         return content.toString();
+    }
+
+    protected TimeLineItem createTimeLineItem(Element ele, TimeLineSite timeLineSite, String logoPngUrl, Elements innerElements) {
+        return TimeLineItem.builder()
+                .sourceId(getSourceId(ele.select("link").text()))
+                .title(ele.select("title").text())
+                .landingUrl(ele.select("link").text())
+                .timeLineSite(timeLineSite)
+                .logoUrl(logoPngUrl)
+                .content(partitionContent(innerElements.get(0), 5))
+                .build();
     }
 
 }

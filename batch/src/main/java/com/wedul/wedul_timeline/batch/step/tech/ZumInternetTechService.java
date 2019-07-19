@@ -36,17 +36,7 @@ public class ZumInternetTechService extends TechCrawlService {
                 Elements innerElements = innerDoc.select("#post.post-content");
                 changeImageTagPath(innerElements);
 
-                TimeLineItem timeLineItem = TimeLineItem.builder()
-                        .sourceId(ele.select("link").text())
-                        .title(ele.select("title").text())
-                        .landingUrl(ele.select("link").text())
-                        .timeLineSite(timeLineSite)
-                        .logoUrl(LOGO_PNG_URL)
-                        .content(partitionContent(innerElements.get(0), 5))
-                        .build();
-
-                timeLineItems.add(timeLineItem);
-
+                timeLineItems.add(createTimeLineItem(ele, timeLineSite, LOGO_PNG_URL, innerElements));
             } catch (Exception e) {
                 log.error("줌 인터넷 테크 페이지 수집에 실패하였습니다.", e);
             }
