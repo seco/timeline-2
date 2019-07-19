@@ -70,3 +70,4 @@ api/build/*
 batch/build/*
 
 *.log
+nohup*
