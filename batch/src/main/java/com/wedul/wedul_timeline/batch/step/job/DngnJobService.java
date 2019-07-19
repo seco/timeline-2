@@ -38,7 +38,7 @@ public class DngnJobService extends JobCrawlService {
                 .title(title)
                 .timeLineSite(timeLineSite)
                 .landingUrl(landingUrl)
-                .sourceId(landingUrl)
+                .sourceId(getSourceId(landingUrl))
                 .logoUrl(logoUrl)
                 .content(getContent(restTemplate, timeLineSite.getSiteUrl(), dngnResDto.getResults()[0].getValue().getContent()))
                 .build());
