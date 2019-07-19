@@ -2,7 +2,11 @@ package com.wedul.wedul_timeline.batch.step.tech;
 
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.util.HashUtil;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -22,6 +26,42 @@ public abstract class TechCrawlService implements SiteCrawlerI {
     public String removeTag(String text) {
         Pattern pattern = Pattern.compile("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", Pattern.DOTALL);
         return pattern.matcher(text).replaceAll("");
+    }
+
+    protected void removeTagByKeys(Document document, List<String> removeTagKeys) {
+        for (String removeTagKey : removeTagKeys) {
+            document.select(removeTagKey).remove();
+        }
+
+        Elements pTagElements = document.select("p");
+        for (Element pTagElement : pTagElements) {
+            if (!pTagElement.hasText() && pTagElement.getElementsByTag("img").size() < 1) {
+                pTagElement.remove();
+            }
+        }
+    }
+
+    protected void changeImageTagPath(Elements elements) {
+        Elements elems = elements.select("[src]");
+        for (Element elem : elems) {
+            if (!elem.attr("src").equals(elem.attr("abs:src"))) {
+                elem.attr("src", elem.attr("abs:src"));
+            }
+        }
+    }
+
+    protected String partitionContent(Element element, int LIMIT_LINE) {
+        StringBuilder content = new StringBuilder();
+
+        for (int i = 0; i < element.childNodes().size(); i++) {
+            content.append(element.child(i));
+
+            if (i == LIMIT_LINE) {
+                break;
+            }
+        }
+
+        return content.toString();
     }
 
 }

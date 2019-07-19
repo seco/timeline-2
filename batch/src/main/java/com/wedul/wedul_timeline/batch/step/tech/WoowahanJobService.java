@@ -5,21 +5,19 @@ import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@Service("ZumInternetTechService")
+@Service("WoowahanTechService")
 @Slf4j
-public class ZumInternetTechService extends TechCrawlService {
+public class WoowahanJobService extends TechCrawlService {
 
-    private static final String LOGO_PNG_URL = "http://lego.zumst.com/resources/current/images/img_logo_2x_20190604.png";
-
-    private List<String> REMOVE_TAG_KEYS = Arrays.asList("p.post-info", "h1.post-title");
+    private static final String LOGO_PNG_URL = "https://www.woowahan.com/img/pc/common-logo.png";
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
@@ -31,9 +29,8 @@ public class ZumInternetTechService extends TechCrawlService {
         elements.forEach(ele -> {
             try {
                 Document innerDoc = Jsoup.connect(ele.select("link").text()).get();
-                removeTagByKeys(innerDoc, REMOVE_TAG_KEYS);
 
-                Elements innerElements = innerDoc.select("#post.post-content");
+                Elements innerElements = innerDoc.select("div.post-content");
                 changeImageTagPath(innerElements);
 
                 TimeLineItem timeLineItem = TimeLineItem.builder()
@@ -48,7 +45,7 @@ public class ZumInternetTechService extends TechCrawlService {
                 timeLineItems.add(timeLineItem);
 
             } catch (Exception e) {
-                log.error("줌 인터넷 테크 페이지 수집에 실패하였습니다.", e);
+                log.error("우아한형제들 테크 페이지 수집에 실패하였습니다", e);
             }
         });
 
