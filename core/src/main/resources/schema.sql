@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `wedul`.`timeline_site` (
 CREATE TABLE IF NOT EXISTS `wedul`.`timeline_item` (
    item_id int not null auto_increment primary key,
    site_id int not null comment '사이트 타입',
-   source_id char(64) not null comment '고유 아이디',
+   source_id char(128) not null comment '고유 아이디',
    landing_url char(255) not null comment '랜딩 url',
    logo_url char(255) not null comment 'logo url',
    title char(255) not null comment '타이틀',
