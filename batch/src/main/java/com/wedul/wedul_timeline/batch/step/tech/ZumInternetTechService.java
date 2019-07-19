@@ -22,6 +22,8 @@ public class ZumInternetTechService extends TechCrawlService {
 
     private List<String> REMOVE_TAG_KEYS = Arrays.asList("p.post-info", "h1.post-title");
 
+    private static final int LIMIT_LINE = 8;
+
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
         List<TimeLineItem> timeLineItems = new ArrayList<>();
@@ -32,11 +34,9 @@ public class ZumInternetTechService extends TechCrawlService {
         elements.forEach(ele -> {
             try {
                 Document innerDoc = Jsoup.connect(ele.select("link").text()).get();
-
                 removeTagByKeys(innerDoc, REMOVE_TAG_KEYS);
 
                 Elements innerElements = innerDoc.select("#post.post-content");
-
                 changeImageTagPath(innerElements);
 
                 TimeLineItem timeLineItem = TimeLineItem.builder()
@@ -45,7 +45,7 @@ public class ZumInternetTechService extends TechCrawlService {
                         .landingUrl(ele.select("link").text())
                         .timeLineSite(timeLineSite)
                         .logoUrl(LOGO_PNG_URL)
-                        .content(innerElements.html())
+                        .content(partitionContent(innerElements.get(0)))
                         .build();
 
                 timeLineItems.add(timeLineItem);
@@ -78,6 +78,20 @@ public class ZumInternetTechService extends TechCrawlService {
                 elem.attr("src", elem.attr("abs:src"));
             }
         }
+    }
+
+    private String partitionContent(Element element) {
+        StringBuilder content = new StringBuilder();
+
+        for (int i = 0; i < element.childNodes().size(); i++) {
+            content.append(element.child(i));
+
+            if (i == LIMIT_LINE) {
+                break;
+            }
+        }
+
+        return content.toString();
     }
 
 }
