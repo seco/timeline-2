@@ -2,7 +2,6 @@ package com.wedul.wedul_timeline.api.config;
 
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ReadListener;

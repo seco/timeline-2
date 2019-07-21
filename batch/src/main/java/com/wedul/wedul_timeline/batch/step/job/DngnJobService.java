@@ -5,6 +5,8 @@ import com.wedul.wedul_timeline.batch.step.job.dto.DngnResDto;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
+import lombok.Builder;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -33,6 +35,7 @@ public class DngnJobService extends JobCrawlService {
         // 컨텐츠 전체 정보
         DngnResDto dngnResDto = getNotion(restTemplate, timeLineSite.getSiteUrl());
         String title = String.valueOf(dngnResDto.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", "").trim();
+        DngnData dngnData = getData(restTemplate, timeLineSite.getSiteUrl(), dngnResDto.getResults()[0].getValue().getContent());
 
         return Arrays.asList(TimeLineItem.builder()
                 .title(title)
@@ -40,7 +43,8 @@ public class DngnJobService extends JobCrawlService {
                 .landingUrl(landingUrl)
                 .sourceId(getSourceId(landingUrl))
                 .logoUrl(logoUrl)
-                .content(getContent(restTemplate, timeLineSite.getSiteUrl(), dngnResDto.getResults()[0].getValue().getContent()))
+                .publishedAt(dngnData.getPublishedAt())
+                .content(dngnData.getContent())
                 .build());
     }
 
@@ -66,14 +70,19 @@ public class DngnJobService extends JobCrawlService {
      * @param contentIds
      * @return
      */
-    private String  getContent(RestTemplate restTemplate, String uri, String[] contentIds) {
+    private DngnData getData(RestTemplate restTemplate, String uri, String[] contentIds) {
         StringBuilder sb = new StringBuilder();
+        DngnData dngnData = new DngnData();
 
         Arrays.stream(contentIds).forEach(contentId -> {
             DngnDto dngnReqDto = new DngnDto();
             dngnReqDto.setRequests(new DngnDto.DngnReqDto[]{DngnDto.DngnReqDto.builder().table("block").id(contentId).build()});
 
             DngnResDto result = restTemplate.postForObject(uri, dngnReqDto, DngnResDto.class);
+
+            if (result.getResults()[0].getValue().getLast_edited_time() > dngnData.getPublishedAt()) {
+                dngnData.setPublishedAt(result.getResults()[0].getValue().getLast_edited_time());
+            }
 
             if (null != result.getResults()[0].getValue().getProperties()) {
                 sb.append("<p>");
@@ -82,7 +91,14 @@ public class DngnJobService extends JobCrawlService {
             }
         });
 
-        return sb.toString();
+        dngnData.setContent(sb.toString());
+        return dngnData;
+    }
+
+    @Data
+    private static class DngnData {
+        private String content;
+        private long publishedAt;
     }
 
 }

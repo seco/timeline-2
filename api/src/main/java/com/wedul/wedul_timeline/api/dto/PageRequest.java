@@ -3,6 +3,9 @@ package com.wedul.wedul_timeline.api.dto;
 import lombok.Setter;
 import org.springframework.data.domain.Sort;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * wedul_timeline
  *
@@ -30,6 +33,10 @@ public final class PageRequest {
         return null == this.sort ? new Sort(Sort.Direction.DESC, sortField) : this.sort;
     }
 
+    public Sort getSorts(List<String> sorts) {
+        return Sort.by(sorts.stream().map(name -> Sort.Order.desc(name)).collect(Collectors.toList()));
+    }
+
     /**
      * 기본 요청 값
      *
@@ -47,5 +54,15 @@ public final class PageRequest {
      */
     public org.springframework.data.domain.PageRequest of(String updateField) {
         return org.springframework.data.domain.PageRequest.of(getPage(), getSize(), getSort(updateField));
+    }
+
+    /**
+     * 특정 필드 기준 정렬
+     *
+     * @param updateFields
+     * @return
+     */
+    public org.springframework.data.domain.PageRequest of(List<String> updateFields) {
+        return org.springframework.data.domain.PageRequest.of(getPage(), getSize(), getSorts(updateFields));
     }
 }

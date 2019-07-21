@@ -48,13 +48,16 @@ public class TimeLineItem extends CommonEntity {
     @Column
     private String content;
 
+    @Column
+    private long publishedAt;
+
     public void copy(TimeLineItem timeLineItem) {
         this.setSourceId(timeLineItem.getSourceId());
         this.setTitle(timeLineItem.getTitle());
         this.setLandingUrl(timeLineItem.getLandingUrl());
         this.setLogoUrl(timeLineItem.getLogoUrl());
         this.setContent(timeLineItem.getContent());
-        this.setUpdateAt(System.currentTimeMillis());
+        this.setPublishedAt(timeLineItem.publishedAt);
     }
 
 }

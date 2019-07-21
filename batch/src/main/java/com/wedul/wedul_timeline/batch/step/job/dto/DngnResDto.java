@@ -30,6 +30,7 @@ public class DngnResDto {
         private DngnTitle properties;
         private String[] content;
         private boolean alive;
+        private long last_edited_time;
     }
 
     @Data

@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `wedul`.`timeline_item` (
    logo_url char(255) not null comment 'logo url',
    title char(255) not null comment '타이틀',
    content text not null comment '내용',
+   published_at LONG not null comment '컨텐츠 작성 시간' default 0,
    update_at LONG not null comment '업데이트 시간',
    create_at LONG not null comment '생성 시간',
    KEY `wedul_timeline_item_IDX` (`site_id`),
