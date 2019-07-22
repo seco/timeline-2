@@ -25,4 +25,7 @@ public class WoowahanDto {
 
     @JsonProperty("EDate")
     private String eDate;
+
+    @JsonProperty("SDate")
+    private String sDate;
 }

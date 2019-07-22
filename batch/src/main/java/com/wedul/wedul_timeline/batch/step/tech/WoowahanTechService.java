@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service("WoowahanTechService")
 @Slf4j
-public class WoowahanJobService extends TechCrawlService {
+public class WoowahanTechService extends TechCrawlService {
 
     private static final String LOGO_PNG_URL = "https://www.woowahan.com/img/pc/common-logo.png";
 
