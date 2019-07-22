@@ -1,8 +1,6 @@
 package com.wedul.wedul_timeline.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -57,7 +55,11 @@ public class TimeLineItem extends CommonEntity {
         this.setLandingUrl(timeLineItem.getLandingUrl());
         this.setLogoUrl(timeLineItem.getLogoUrl());
         this.setContent(timeLineItem.getContent());
-        this.setPublishedAt(timeLineItem.publishedAt);
+        if (0 == timeLineItem.getPublishedAt()) {
+            this.setPublishedAt(System.currentTimeMillis());
+        } else {
+            this.setPublishedAt(timeLineItem.getPublishedAt());
+        }
     }
 
 }
