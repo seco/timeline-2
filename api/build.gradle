@@ -6,6 +6,9 @@ dependencies {
     // tomcat
     compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version:'8.5.29'
 
+    // swagger
+    compile 'io.springfox:springfox-swagger2:2.9.2'
+    compile 'io.springfox:springfox-swagger-ui:2.9.2'
 }
 
 mainClassName = 'com.wedul.wedul_timeline.api.WedulTimelineApplication'

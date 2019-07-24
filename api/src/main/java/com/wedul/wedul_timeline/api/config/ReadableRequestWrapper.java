@@ -115,6 +115,10 @@ public class ReadableRequestWrapper extends HttpServletRequestWrapper {
             parseParameters();
         }
         ArrayList<String> values = this.parameters.get(name);
+        if (values == null) {
+            return null;
+        }
+
         String[] arr = values.toArray(new String[values.size()]);
         if (arr == null) {
             return null;
