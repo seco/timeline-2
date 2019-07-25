@@ -36,6 +36,7 @@ public class KafkaService {
         TimeLineItem savedTimeLineItem = timeLineItemService.getTimeLineItem(timeLineItem.getSourceId());
         if (null != savedTimeLineItem) {
             savedTimeLineItem.copy(timeLineItem);
+            savedTimeLineItem.setUpdateAt(System.currentTimeMillis());
             timeLineItemService.setTimeLineItem(savedTimeLineItem);
         } else {
             timeLineItem.setTimeLineSite(timeLineItem.getCopyTimeLineSite());

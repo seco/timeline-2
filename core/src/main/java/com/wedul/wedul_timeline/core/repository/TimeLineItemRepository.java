@@ -84,4 +84,6 @@ public interface TimeLineItemRepository extends JpaRepository<TimeLineItem, Long
     )
     Page<TimeLineItem> findAllByTitleLikeAndContentLike(Pageable pageable, @Param("searchQuery") String searchQuery);
 
+
+
 }

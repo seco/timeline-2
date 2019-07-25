@@ -55,7 +55,6 @@ public class TimeLineItem extends CommonEntity {
         this.setLandingUrl(timeLineItem.getLandingUrl());
         this.setLogoUrl(timeLineItem.getLogoUrl());
         this.setContent(timeLineItem.getContent());
-        this.setUpdateAt(System.currentTimeMillis());
         if (0 == timeLineItem.getPublishedAt()) {
             this.setPublishedAt(System.currentTimeMillis());
         } else {
