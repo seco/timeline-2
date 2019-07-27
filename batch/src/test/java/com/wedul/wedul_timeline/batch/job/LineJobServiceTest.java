@@ -29,7 +29,7 @@ public class LineJobServiceTest {
     }
 
     @Test
-    public void 태그정보가져오기() throws IOException {
+    public void 라인_태그정보가져오기() throws IOException {
         lineJobService.crawl(TimeLineSite.builder().siteUrl("https://recruit.linepluscorp.com/lineplus/career/list?classId=148").build());
     }
 

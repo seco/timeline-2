@@ -3,9 +3,12 @@ package com.wedul.wedul_timeline.batch.step.job;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
+import com.wedul.wedul_timeline.core.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,7 @@ import java.util.List;
  * @since 2019-07-22
  **/
 @Slf4j
-@Service
+@Service("LineJobService")
 public class LineJobService  extends JobCrawlService {
 
     private final String LOGO_URL = "https://scdn.line-apps.com/n/_s1/_0/linecorpweb-uit/images/logo_h1_v2.png";
@@ -30,11 +33,36 @@ public class LineJobService  extends JobCrawlService {
         List<TimeLineItem> timeLineItems = new ArrayList<>();
 
         Document document = Jsoup.connect(timeLineSite.getSiteUrl()).get();
-        Elements element = document.getElementsByTag("tbody");
+        Elements elements = document.getElementsByTag("tr");
 
-        if (null == element || element.size() <= 0) throw new NotFoundException("라인 채용정보를 가져오는데 실패하였습니다.");
+        if (null == elements || elements.size() <= 0) throw new NotFoundException("라인 채용정보를 가져오는데 실패하였습니다.");
 
+        elements.forEach(ele -> {
+            try {
+                String landingUri = ele.selectFirst("a").absUrl("href");
+                Document innerHtml = Jsoup.connect(landingUri).get();
+                Element element = innerHtml.selectFirst(".content_title_area");
 
-        return null;
+                String title = element.selectFirst("h3").text();
+                long date = DateUtil.unixTimeStamp(element.selectFirst(".cont_inf").text().replace(".", "-"));
+                String content = Jsoup.clean(innerHtml.selectFirst(".content_area").html(), Whitelist.basic());
+
+                TimeLineItem timeLineItem = TimeLineItem.builder()
+                        .sourceId(getSourceId(landingUri))
+                        .title(title)
+                        .landingUrl(landingUri)
+                        .timeLineSite(timeLineSite)
+                        .logoUrl(LOGO_URL)
+                        .content(content)
+                        .publishedAt(date)
+                        .build();
+
+                timeLineItems.add(timeLineItem);
+            } catch (Exception e) {
+                log.error("라인 상세 본문 페이지 수집에 실패하였습니다.");
+            }
+        });
+
+        return timeLineItems;
     }
 }
