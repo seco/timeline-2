@@ -3,11 +3,13 @@ package com.wedul.wedul_timeline.batch.step.tech;
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
+import com.wedul.wedul_timeline.core.util.DateUtil;
 import com.wedul.wedul_timeline.core.util.HashUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -66,10 +68,11 @@ public abstract class TechCrawlService implements SiteCrawlerI {
         return content.toString();
     }
 
-    protected TimeLineItem createTimeLineItem(Element ele, TimeLineSite timeLineSite, String logoPngUrl, Elements innerElements) {
+    protected TimeLineItem createTimeLineItem(Element ele, TimeLineSite timeLineSite, String logoPngUrl, Elements innerElements) throws ParseException {
         return TimeLineItem.builder()
                 .sourceId(getSourceId(ele.select("link").text()))
                 .title(ele.select("title").text())
+                .publishedAt(DateUtil.convertPubDateToTimestamp(ele.select("pubDate").text()))
                 .landingUrl(ele.select("link").text())
                 .timeLineSite(timeLineSite)
                 .logoUrl(logoPngUrl)

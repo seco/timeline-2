@@ -5,7 +5,14 @@ import com.wedul.wedul_timeline.core.config.error.BadRequestException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * wedul_timeline
@@ -15,9 +22,12 @@ import java.util.Date;
  **/
 public class DateUtil {
 
-    private DateUtil() {}
+    private DateUtil() {
+    }
+
     private static final DateFormat unixTimeSimpleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final DateFormat dateTimeSimpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final DateFormat pubDateSimpleFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.ENGLISH);
 
     /**
      * 유닉스 타임스탬프 얻깅
@@ -67,6 +77,10 @@ public class DateUtil {
 
     private static boolean checkInputDate(String input) {
         return input.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+    }
+
+    public static long convertPubDateToTimestamp(String dateText) throws ParseException {
+        return pubDateSimpleFormat.parse(dateText).getTime();
     }
 
 }
