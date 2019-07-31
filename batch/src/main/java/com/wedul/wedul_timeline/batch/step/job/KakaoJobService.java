@@ -36,11 +36,11 @@ public class KakaoJobService extends JobCrawlService {
                     .append("?page=")
                     .append(i);
             Document doc = Jsoup.connect(pageUrl.toString()).get();
-            Elements element = doc.select(".link_notice");
+            Elements elements = doc.select(".link_notice");
 
-            if (null == element || element.size() <= 0) throw new NotFoundException("카카오톡 채용 정보를 가져오지 못했습니다.");
+            if (null == elements || elements.size() <= 0) throw new NotFoundException("카카오톡 채용 정보를 가져오지 못했습니다.");
 
-            element.forEach(ele -> {
+            elements.forEach(ele -> {
                 try {
                     Document innerHtml = Jsoup.connect(ele.absUrl("href")).get();
                     TimeLineItem timeLineItem = TimeLineItem.builder()

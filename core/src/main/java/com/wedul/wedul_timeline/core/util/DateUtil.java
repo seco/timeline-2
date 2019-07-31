@@ -38,7 +38,7 @@ public class DateUtil {
      */
     public static long unixTimeStamp(String date) throws ParseException {
         if (!checkInputDate(date)) throw new BadRequestException();
-        return unixTimeSimpleFormat.parse(date).getTime();
+        return unixTimeSimpleFormat.parse(date + " 00:00:00").getTime();
     }
 
     /**
