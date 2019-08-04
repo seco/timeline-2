@@ -55,11 +55,13 @@ public class TimeLineItem extends CommonEntity {
         this.setLandingUrl(timeLineItem.getLandingUrl());
         this.setLogoUrl(timeLineItem.getLogoUrl());
         this.setContent(timeLineItem.getContent());
-        if (0 == timeLineItem.getPublishedAt()) {
-            this.setPublishedAt(System.currentTimeMillis());
-        } else {
-            this.setPublishedAt(timeLineItem.getPublishedAt());
+
+        if (this.publishedAt == 0) {
+            if (0 == timeLineItem.getPublishedAt()) {
+                this.setPublishedAt(System.currentTimeMillis());
+            } else {
+                this.setPublishedAt(timeLineItem.getPublishedAt());
+            }
         }
     }
-
 }
