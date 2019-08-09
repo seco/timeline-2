@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.wedul.wedul_timeline.core.type.EnumSiteType.VCNC;
+import static com.wedul.wedul_timeline.core.type.CompanyType.VCNC;
 
 @Service("VcncTechService")
 @Slf4j
