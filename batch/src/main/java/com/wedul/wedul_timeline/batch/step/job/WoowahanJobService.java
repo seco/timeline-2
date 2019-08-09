@@ -35,7 +35,6 @@ public class WoowahanJobService extends JobCrawlService {
 
         HttpEntity entity = new HttpEntity(headers);
         RestTemplate restTemplate = new RestTemplate();
-
         ResponseEntity<WoowahanDto[]> ret = restTemplate.exchange(timeLineSite.getSiteUrl(), HttpMethod.GET, entity, WoowahanDto[].class);
         List<TimeLineItem> timeLineItems = new ArrayList<>();
         Arrays.stream(ret.getBody()).forEach(woowahanDto -> {

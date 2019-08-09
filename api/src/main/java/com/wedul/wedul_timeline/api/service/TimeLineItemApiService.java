@@ -1,6 +1,5 @@
 package com.wedul.wedul_timeline.api.service;
 
-import com.google.common.collect.Lists;
 import com.wedul.wedul_timeline.api.dto.ItemReqDto;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;

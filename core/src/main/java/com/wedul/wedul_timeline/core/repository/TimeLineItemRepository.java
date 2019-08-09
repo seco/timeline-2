@@ -83,7 +83,9 @@ public interface TimeLineItemRepository extends JpaRepository<TimeLineItem, Long
     @Query(
             value = "SELECT * " +
                     "FROM timeline_item t " +
-                    "where t.title like CONCAT('%',:searchQuery,'%') or t.content like CONCAT('%',:searchQuery,'%')",
+                    "JOIN timeline_site s " +
+                    "ON s.site_id = t.site_id " +
+                    "WHERE (( s.site_type = 'JOB' and t.update_at >= :startDate and t.update_at <= :endDate ) or ( s.site_type <> 'JOB' ))",
             nativeQuery = true
     )
     Page<TimeLineItem> findAllByTitleLikeAndContentLike(Pageable pageable, @Param("searchQuery") String searchQuery);

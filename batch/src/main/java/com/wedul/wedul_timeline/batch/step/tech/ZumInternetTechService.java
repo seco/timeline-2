@@ -1,5 +1,6 @@
 package com.wedul.wedul_timeline.batch.step.tech;
 
+import com.wedul.wedul_timeline.batch.step.tech.rss.RssTechService;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.extern.slf4j.Slf4j;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.wedul.wedul_timeline.core.type.CompanyType.ZUM_INTERNET;
+
 @Service("ZumInternetTechService")
 @Slf4j
-public class ZumInternetTechService extends TechCrawlService {
+public class ZumInternetTechService extends RssTechService {
 
     private static final String LOGO_PNG_URL = "http://lego.zumst.com/resources/current/images/img_logo_2x_20190604.png";
 
@@ -36,7 +39,7 @@ public class ZumInternetTechService extends TechCrawlService {
                 Elements innerElements = innerDoc.select("#post.post-content");
                 changeImageTagPath(innerElements);
 
-                timeLineItems.add(createTimeLineItem(ele, timeLineSite, LOGO_PNG_URL, innerElements));
+                timeLineItems.add(createTimeLineItem(ele, timeLineSite, ZUM_INTERNET.getLogoUrl(), innerElements));
             } catch (Exception e) {
                 log.error("줌 인터넷 테크 페이지 수집에 실패하였습니다.", e);
             }

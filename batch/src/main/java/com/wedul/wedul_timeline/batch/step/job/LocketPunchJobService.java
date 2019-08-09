@@ -7,9 +7,7 @@ import com.wedul.wedul_timeline.core.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
