@@ -47,7 +47,7 @@ public class TimeLineItemApiService {
         } else if (StringUtils.isNotBlank(searchDate)) {
             timeLineItems = timeLineItemRepository.findAllByUpdateAtBetween(pageable, dates.get(0), dates.get(1));
         } else if (StringUtils.isNotBlank(searchQuery)) {
-            timeLineItems = timeLineItemRepository.findAllByTitleLikeAndContentLike(pageable, searchQuery);
+            timeLineItems = timeLineItemRepository.findAllByTitleLikeAndContentLike(pageable, searchQuery, dates.get(0), dates.get(1));
         } else {
             timeLineItems = timeLineItemRepository.findAll(pageable);
         }

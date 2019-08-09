@@ -85,9 +85,10 @@ public interface TimeLineItemRepository extends JpaRepository<TimeLineItem, Long
                     "FROM timeline_item t " +
                     "JOIN timeline_site s " +
                     "ON s.site_id = t.site_id " +
-                    "WHERE (( s.site_type = 'JOB' and t.update_at >= :startDate and t.update_at <= :endDate ) or ( s.site_type <> 'JOB' ))",
+                    "WHERE (( s.site_type = 'JOB' and t.update_at >= :startDate and t.update_at <= :endDate ) or ( s.site_type <> 'JOB' )) " +
+                    "and ((t.title like CONCAT('%',:searchQuery,'%') or t.content like CONCAT('%',:searchQuery,'%')))",
             nativeQuery = true
     )
-    Page<TimeLineItem> findAllByTitleLikeAndContentLike(Pageable pageable, @Param("searchQuery") String searchQuery);
+    Page<TimeLineItem> findAllByTitleLikeAndContentLike(Pageable pageable, @Param("searchQuery") String searchQuery, @Param("startDate") long startDate, @Param("endDate") long endDate);
 
 }
