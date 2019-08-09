@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline.batch.step.tech;
+package com.wedul.wedul_timeline.batch.step.tech.rss;
 
 import com.wedul.wedul_timeline.batch.step.tech.rss.RssTechService;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;

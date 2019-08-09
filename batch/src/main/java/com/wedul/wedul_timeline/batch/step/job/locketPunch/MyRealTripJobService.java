@@ -1,4 +1,4 @@
-package com.wedul.wedul_timeline.batch.step.job;
+package com.wedul.wedul_timeline.batch.step.job.locketPunch;
 
 import org.springframework.stereotype.Service;
 

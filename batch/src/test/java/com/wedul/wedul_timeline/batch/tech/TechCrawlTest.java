@@ -1,7 +1,7 @@
 package com.wedul.wedul_timeline.batch.tech;
 
 import com.wedul.wedul_timeline.batch.job.timelineItem.TimeLineItemJobConfiguration;
-import com.wedul.wedul_timeline.batch.step.tech.ZumInternetTechService;
+import com.wedul.wedul_timeline.batch.step.tech.rss.ZumInternetTechService;
 import com.wedul.wedul_timeline.batch.step.tech.feed.impl.VcncTechService;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
