@@ -6,6 +6,9 @@ spring:
 # develop
 ---
 spring:
+  server:
+    port: 8081
+
   profiles: development
   datasource:
     username: /88M772kGsUdE/yutXxF2A==

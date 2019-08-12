@@ -9,9 +9,6 @@ spring:
 spring:
   profiles: development
 
-server:
-  port: 8081
-
 
 # 운영환경 설정
 ---
