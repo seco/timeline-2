@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.wedul.wedul_timeline.core.type.CompanyType.WOOWAHAN;
-
 @Service("WoowahanTechService")
 @Slf4j
 public class WoowahanTechService extends RssTechService {
@@ -36,7 +34,7 @@ public class WoowahanTechService extends RssTechService {
                 Elements innerElements = innerDoc.select("div.post-content");
                 changeImageTagPath(innerElements);
 
-                timeLineItems.add(createTimeLineItem(ele, timeLineSite, WOOWAHAN.getLogoUrl(), innerElements));
+                timeLineItems.add(createTimeLineItem(ele, timeLineSite, getLogoUrl(), innerElements));
             } catch (Exception e) {
                 log.error("우아한형제들 테크 페이지 수집에 실패하였습니다", e);
             }
@@ -45,4 +43,8 @@ public class WoowahanTechService extends RssTechService {
         return timeLineItems;
     }
 
+    @Override
+    public String getLogoUrl() {
+        return "https://www.woowahan.com/img/pc/common-logo.png";
+    }
 }

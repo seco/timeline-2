@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.wedul.wedul_timeline.core.type.CompanyType.VCNC;
-
 @Service("VcncTechService")
 @Slf4j
 public class VcncTechService extends FeedTechService {
@@ -35,7 +33,7 @@ public class VcncTechService extends FeedTechService {
                         .publishedAt(DateUtil.convertAtomDateToTimestamp(ele.select("updated").text()))
                         .landingUrl(ele.select("link").attr("href"))
                         .timeLineSite(timeLineSite)
-                        .logoUrl(VCNC.getLogoUrl())
+                        .logoUrl(getLogoUrl())
                         .content(ele.select("content").text())
                         .build();
 
@@ -48,4 +46,8 @@ public class VcncTechService extends FeedTechService {
         return timeLineItems;
     }
 
+    @Override
+    public String getLogoUrl() {
+        return "https://image.rocketpunch.com/company/30/vcnc_logo_1559872041.jpg?s=400x400&t=inside";
+    }
 }

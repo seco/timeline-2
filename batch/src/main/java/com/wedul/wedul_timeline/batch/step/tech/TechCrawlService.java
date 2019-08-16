@@ -36,4 +36,6 @@ public abstract class TechCrawlService implements SiteCrawlerI {
         return pattern.matcher(text).replaceAll("");
     }
 
+    abstract public String getLogoUrl();
+
 }

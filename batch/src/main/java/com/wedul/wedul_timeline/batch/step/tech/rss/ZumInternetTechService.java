@@ -13,13 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.wedul.wedul_timeline.core.type.CompanyType.ZUM_INTERNET;
-
 @Service("ZumInternetTechService")
 @Slf4j
 public class ZumInternetTechService extends RssTechService {
-
-    private static final String LOGO_PNG_URL = "http://lego.zumst.com/resources/current/images/img_logo_2x_20190604.png";
 
     private List<String> REMOVE_TAG_KEYS = Arrays.asList("p.post-info", "h1.post-title");
 
@@ -42,7 +38,7 @@ public class ZumInternetTechService extends RssTechService {
                 Elements innerElements = innerDoc.select("#post.post-content");
                 changeImageTagPath(innerElements);
 
-                timeLineItems.add(createTimeLineItem(ele, timeLineSite, ZUM_INTERNET.getLogoUrl(), innerElements));
+                timeLineItems.add(createTimeLineItem(ele, timeLineSite, getLogoUrl(), innerElements));
             } catch (Exception e) {
                 log.error("줌 인터넷 테크 페이지 수집에 실패하였습니다.", e);
             }
@@ -51,4 +47,8 @@ public class ZumInternetTechService extends RssTechService {
         return timeLineItems;
     }
 
+    @Override
+    public String getLogoUrl() {
+        return "http://lego.zumst.com/resources/current/images/img_logo_2x_20190604.png";
+    }
 }
