@@ -14,8 +14,10 @@ insert ignore into timeline_site(site_type, site_name, site_url, update_at, crea
 
 -- tech
 -- 우아한 형제들
-INSERT ignore INTO timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'WoowahanTech', 'https://woowabros.github.io/feed.xml', 1563091845, 1563091845);
+insert ignore into timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'WoowahanTech', 'https://woowabros.github.io/feed.xml', 1563091845, 1563091845);
 -- 줌 인터넷
-INSERT ignore INTO timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'ZumInternetTech', 'https://zuminternet.github.io/feed.xml', 1563092630, 1563092630);
+insert ignore into timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'ZumInternetTech', 'https://zuminternet.github.io/feed.xml', 1563092630, 1563092630);
 -- VCNC
 insert ignore into timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'VcncTech', 'http://engineering.vcnc.co.kr/atom.xml', 1560065629, 1560065629);
+-- Kakao
+insert ignore into timeline_site(site_type, site_name, site_url, update_at, create_at) VALUES ('TECH', 'KakaoTech', 'http://tech.kakao.com/rss', 1560065629, 1560065629);

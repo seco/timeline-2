@@ -1,15 +1,14 @@
 package com.wedul.wedul_timeline.batch.tech;
 
-import com.wedul.wedul_timeline.batch.job.timelineItem.TimeLineItemJobConfiguration;
-import com.wedul.wedul_timeline.batch.step.tech.rss.ZumInternetTechService;
 import com.wedul.wedul_timeline.batch.step.tech.feed.impl.VcncTechService;
+import com.wedul.wedul_timeline.batch.step.tech.rss.KakaoTechService;
+import com.wedul.wedul_timeline.batch.step.tech.rss.ZumInternetTechService;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
@@ -18,7 +17,6 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@TestPropertySource(properties = {"job.name=" + TimeLineItemJobConfiguration.JOB_NAME})
 public class TechCrawlTest {
 
     @Inject
@@ -26,6 +24,9 @@ public class TechCrawlTest {
 
     @Inject
     private VcncTechService vcncTechService;
+
+    @Inject
+    private KakaoTechService kakaoTechService;
 
     @Test
     public void crawlZumInternetTech() throws IOException {
@@ -45,6 +46,17 @@ public class TechCrawlTest {
                 .build();
 
         List<TimeLineItem> timeLineItems = vcncTechService.crawl(vcncTechSite);
+
+        Assert.assertTrue(timeLineItems.size() > 0);
+    }
+
+    @Test
+    public void crawlKakaoTech() throws IOException {
+        TimeLineSite kakaoTechSite = TimeLineSite.builder()
+                .siteUrl("http://tech.kakao.com/rss/")
+                .build();
+
+        List<TimeLineItem> timeLineItems = kakaoTechService.crawl(kakaoTechSite);
 
         Assert.assertTrue(timeLineItems.size() > 0);
     }
