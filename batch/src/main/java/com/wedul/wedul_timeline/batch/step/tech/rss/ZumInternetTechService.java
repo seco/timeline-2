@@ -1,6 +1,5 @@
 package com.wedul.wedul_timeline.batch.step.tech.rss;
 
-import com.wedul.wedul_timeline.batch.step.tech.rss.RssTechService;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +22,10 @@ public class ZumInternetTechService extends RssTechService {
     private static final String LOGO_PNG_URL = "http://lego.zumst.com/resources/current/images/img_logo_2x_20190604.png";
 
     private List<String> REMOVE_TAG_KEYS = Arrays.asList("p.post-info", "h1.post-title");
+
+    public ZumInternetTechService() {
+        super();
+    }
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {

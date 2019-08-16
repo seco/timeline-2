@@ -1,6 +1,5 @@
 package com.wedul.wedul_timeline.batch.step.tech.rss;
 
-import com.wedul.wedul_timeline.batch.step.tech.rss.RssTechService;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +18,9 @@ import static com.wedul.wedul_timeline.core.type.CompanyType.WOOWAHAN;
 @Slf4j
 public class WoowahanTechService extends RssTechService {
 
+    public WoowahanTechService() {
+        super();
+    }
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
