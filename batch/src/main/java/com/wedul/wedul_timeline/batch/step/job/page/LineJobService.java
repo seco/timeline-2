@@ -1,5 +1,6 @@
-package com.wedul.wedul_timeline.batch.step.job;
+package com.wedul.wedul_timeline.batch.step.job.page;
 
+import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
@@ -24,9 +25,7 @@ import java.util.List;
  **/
 @Slf4j
 @Service("LineJobService")
-public class LineJobService  extends JobCrawlService {
-
-    private final String LOGO_URL = "https://scdn.line-apps.com/n/_s1/_0/linecorpweb-uit/images/logo_h1_v2.png";
+public class LineJobService extends JobCrawlService implements PageJobServiceI {
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
@@ -52,7 +51,7 @@ public class LineJobService  extends JobCrawlService {
                         .title(title)
                         .landingUrl(landingUri)
                         .timeLineSite(timeLineSite)
-                        .logoUrl(LOGO_URL)
+                        .logoUrl(logoUrl(""))
                         .content(content)
                         .publishedAt(date)
                         .build();
@@ -64,5 +63,10 @@ public class LineJobService  extends JobCrawlService {
         });
 
         return timeLineItems;
+    }
+
+    @Override
+    public String logoUrl(String subUrl) {
+        return "https://scdn.line-apps.com/n/_s1/_0/linecorpweb-uit/images/logo_h1_v2.png";
     }
 }

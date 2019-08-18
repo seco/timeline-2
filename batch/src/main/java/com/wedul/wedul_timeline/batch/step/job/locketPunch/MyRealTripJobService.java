@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class MyRealTripJobService extends LocketPunchJobService {
 
     @Override
-    protected String getLogoUrl() {
+    protected String logoUrl() {
         return "https://image.rocketpunch.com/company/88/myrealtrip_logo_1551852207.png?s=400x400&t=inside";
     }
 

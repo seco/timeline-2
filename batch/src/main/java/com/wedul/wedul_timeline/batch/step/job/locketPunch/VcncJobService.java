@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class VcncJobService extends LocketPunchJobService {
 
     @Override
-    protected String getLogoUrl() {
+    protected String logoUrl() {
         return "https://image.rocketpunch.com/company/30/vcnc_logo_1559872041.jpg?s=400x400&t=inside";
     }
 

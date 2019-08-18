@@ -1,5 +1,6 @@
-package com.wedul.wedul_timeline.batch.step.job;
+package com.wedul.wedul_timeline.batch.step.job.api;
 
+import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import com.wedul.wedul_timeline.batch.step.job.dto.DngnDto;
 import com.wedul.wedul_timeline.batch.step.job.dto.DngnResDto;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
@@ -22,20 +23,17 @@ import java.util.List;
  **/
 @Service("DngnJobService")
 @Slf4j
-public class DngnJobService extends JobCrawlService {
+public class DngnJobService extends JobCrawlService implements ApiJobServiceI {
 
     private final String landingUrl = "https://www.notion.so/2c789a2c7b1a4cfca40b11afba678315";
     private final String logoUrl = "https://d3qlrgda07sb6k.cloudfront.net/assets/home/base/header/logo-basic-00b7e471b721ce9db8b0758c05a84684413c8aef1ad54caa0f3fcbe7328c947f.svg";
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) {
-        RestTemplate restTemplate = new RestTemplate();
-
-
         // 컨텐츠 전체 정보
-        DngnResDto dngnResDto = getNotion(restTemplate, timeLineSite.getSiteUrl());
+        DngnResDto dngnResDto = getNotion(restTemplate(), timeLineSite.getSiteUrl());
         String title = String.valueOf(dngnResDto.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", "").trim();
-        DngnData dngnData = getData(restTemplate, timeLineSite.getSiteUrl(), dngnResDto.getResults()[0].getValue().getContent());
+        DngnData dngnData = getData(restTemplate(), timeLineSite.getSiteUrl(), dngnResDto.getResults()[0].getValue().getContent());
 
         return Arrays.asList(TimeLineItem.builder()
                 .title(title)

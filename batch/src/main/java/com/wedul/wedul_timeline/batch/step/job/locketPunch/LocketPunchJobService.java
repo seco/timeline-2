@@ -59,7 +59,7 @@ public abstract class LocketPunchJobService extends JobCrawlService {
         return document.getElementById(timeLineItemJobContentId()).html();
     }
 
-    protected abstract String getLogoUrl();
+    protected abstract String logoUrl();
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
@@ -82,7 +82,7 @@ public abstract class LocketPunchJobService extends JobCrawlService {
                         .sourceId(getSourceId(detailUrl))
                         .title(title)
                         .landingUrl(detailUrl)
-                        .logoUrl(getLogoUrl())
+                        .logoUrl(logoUrl())
                         .content(getContent(detailUrl))
                         .publishedAt(date)
                         .build();
