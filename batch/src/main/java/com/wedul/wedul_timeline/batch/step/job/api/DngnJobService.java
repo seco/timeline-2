@@ -69,19 +69,23 @@ public class DngnJobService extends ApiJobService {
         DngnData dngnData = new DngnData();
 
         Arrays.stream(contentIds).forEach(contentId -> {
-            DngnDto dngnReqDto = new DngnDto();
-            dngnReqDto.setRequests(new DngnDto.DngnReqDto[]{DngnDto.DngnReqDto.builder().table("block").id(contentId).build()});
+            try {
+                DngnDto dngnReqDto = new DngnDto();
+                dngnReqDto.setRequests(new DngnDto.DngnReqDto[]{DngnDto.DngnReqDto.builder().table("block").id(contentId).build()});
 
-            DngnResDto result = restTemplate.postForObject(uri, dngnReqDto, DngnResDto.class);
+                DngnResDto result = restTemplate.postForObject(uri, dngnReqDto, DngnResDto.class);
 
-            if (result.getResults()[0].getValue().getLast_edited_time() > dngnData.getPublishedAt()) {
-                dngnData.setPublishedAt(result.getResults()[0].getValue().getLast_edited_time());
-            }
+                if (result.getResults()[0].getValue().getLast_edited_time() > dngnData.getPublishedAt()) {
+                    dngnData.setPublishedAt(result.getResults()[0].getValue().getLast_edited_time());
+                }
 
-            if (null != result.getResults()[0].getValue().getProperties()) {
-                sb.append("<p>");
-                sb.append(String.valueOf(result.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", StringUtils.EMPTY).trim());
-                sb.append("</p>");
+                if (null != result.getResults()[0].getValue().getProperties()) {
+                    sb.append("<p>");
+                    sb.append(String.valueOf(result.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", StringUtils.EMPTY).trim());
+                    sb.append("</p>");
+                }
+            } catch (Exception e) {
+                log.error("당근마켓 정보를 가져오다 에러가 발생했습니다.", e);
             }
         });
 
