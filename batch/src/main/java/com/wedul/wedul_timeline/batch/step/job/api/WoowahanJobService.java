@@ -1,5 +1,6 @@
-package com.wedul.wedul_timeline.batch.step.job;
+package com.wedul.wedul_timeline.batch.step.job.api;
 
+import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import com.wedul.wedul_timeline.batch.step.job.dto.WoowahanDto;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
@@ -25,7 +26,7 @@ import java.util.List;
  **/
 @Service("WoowahanJobService")
 @Slf4j
-public class WoowahanJobService extends JobCrawlService {
+public class WoowahanJobService extends JobCrawlService implements ApiJobServiceI {
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite)  {
@@ -34,8 +35,8 @@ public class WoowahanJobService extends JobCrawlService {
         headers.set("Cookie", "rbzid=TjacRvM7qfzu9j5QKlRBJtKVO+jGOeue8hRFDh4fTBXak5MvEGbmnMER6xV0yRXya/UNw6RiLGSPHCOyFOogCIORVCwuRAwKhhuUJ+jPvknhMYVfIScPT4mScLuGoLoaxAnB9zHh0hD678x90E1QF3KOBMGU6XaKDhzgmBWdvhrYd6vBrOfRg5i9bv/QrosPOmHPby2+LPRo+sQ6dwmvOo+N+nDSs3imAlab7A9TdLxKsAGhGmfNYEzVNpXm9LvAXrmPzJbcFnbBRtzDOt9wq6jD69VYqJ2+XRv496l1/pSAf2hqhpxYXUq4TujLwjyj; rbzsessionid=30f52617d70836f750fa4aef5a550907");
 
         HttpEntity entity = new HttpEntity(headers);
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<WoowahanDto[]> ret = restTemplate.exchange(timeLineSite.getSiteUrl(), HttpMethod.GET, entity, WoowahanDto[].class);
+
+        ResponseEntity<WoowahanDto[]> ret = restTemplate().exchange(timeLineSite.getSiteUrl(), HttpMethod.GET, entity, WoowahanDto[].class);
         List<TimeLineItem> timeLineItems = new ArrayList<>();
         Arrays.stream(ret.getBody()).forEach(woowahanDto -> {
             try {

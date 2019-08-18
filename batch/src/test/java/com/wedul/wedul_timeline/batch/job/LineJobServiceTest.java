@@ -1,7 +1,7 @@
 package com.wedul.wedul_timeline.batch.job;
 
 import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
-import com.wedul.wedul_timeline.batch.step.job.LineJobService;
+import com.wedul.wedul_timeline.batch.step.job.page.LineJobService;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import org.junit.Before;
 import org.junit.Test;

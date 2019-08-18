@@ -28,6 +28,9 @@ logging:
   pattern:
     file: ./logs/batch.%d{yyyy-MM-dd}.log
 
+server:
+  port: 8081
+
 # 운영환경 설정
 ---
 

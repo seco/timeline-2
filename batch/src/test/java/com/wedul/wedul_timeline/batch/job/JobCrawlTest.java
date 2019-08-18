@@ -1,9 +1,9 @@
 package com.wedul.wedul_timeline.batch.job;
 
 import com.wedul.wedul_timeline.batch.job.timelineItem.TimeLineItemJobConfiguration;
-import com.wedul.wedul_timeline.batch.step.job.DngnJobService;
-import com.wedul.wedul_timeline.batch.step.job.KakaoJobService;
-import com.wedul.wedul_timeline.batch.step.job.WoowahanJobService;
+import com.wedul.wedul_timeline.batch.step.job.api.DngnJobService;
+import com.wedul.wedul_timeline.batch.step.job.page.KakaoJobService;
+import com.wedul.wedul_timeline.batch.step.job.api.WoowahanJobService;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.RequiredArgsConstructor;
 import org.junit.Test;

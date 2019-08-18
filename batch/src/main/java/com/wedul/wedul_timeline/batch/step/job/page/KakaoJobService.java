@@ -1,5 +1,6 @@
-package com.wedul.wedul_timeline.batch.step.job;
+package com.wedul.wedul_timeline.batch.step.job.page;
 
+import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
@@ -22,10 +23,9 @@ import java.util.List;
  **/
 @Service("KakaoJobService")
 @Slf4j
-public class KakaoJobService extends JobCrawlService {
+public class KakaoJobService extends JobCrawlService implements PageJobServiceI {
 
     private final int MAX_PAGE = 10;
-    private final String PRE_FIX_URL = "https://careers.kakao.com";
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
@@ -48,7 +48,7 @@ public class KakaoJobService extends JobCrawlService {
                             .title(ele.text())
                             .landingUrl(ele.absUrl("href"))
                             .timeLineSite(timeLineSite)
-                            .logoUrl(PRE_FIX_URL + innerHtml.selectFirst(".img_logo").attr("src"))
+                            .logoUrl(logoUrl(innerHtml.selectFirst(".img_logo").attr("src")))
                             .content(Jsoup.clean(innerHtml.selectFirst(".area_cont").html(), Whitelist.basic()))
                             .build();
 
@@ -60,5 +60,10 @@ public class KakaoJobService extends JobCrawlService {
             });
         }
         return timeLineItems;
+    }
+
+    @Override
+    public String logoUrl(String subUrl) {
+        return new StringBuilder("https://careers.kakao.com").append(subUrl).toString();
     }
 }
