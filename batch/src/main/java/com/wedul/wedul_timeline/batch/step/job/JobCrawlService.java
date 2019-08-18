@@ -2,6 +2,7 @@ package com.wedul.wedul_timeline.batch.step.job;
 
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.util.HashUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
  * @author wedul
  * @since 2019-06-04
  **/
+@Slf4j
 public abstract class JobCrawlService implements SiteCrawlerI {
 
     @Override

@@ -1,12 +1,10 @@
 package com.wedul.wedul_timeline.batch.step.job.api;
 
-import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import com.wedul.wedul_timeline.batch.step.job.dto.DngnDto;
 import com.wedul.wedul_timeline.batch.step.job.dto.DngnResDto;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
-import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +22,7 @@ import java.util.List;
  **/
 @Service("DngnJobService")
 @Slf4j
-public class DngnJobService extends JobCrawlService implements ApiJobServiceI {
+public class DngnJobService extends ApiJobService {
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) {
@@ -36,8 +34,8 @@ public class DngnJobService extends JobCrawlService implements ApiJobServiceI {
         return Arrays.asList(TimeLineItem.builder()
                 .title(title)
                 .timeLineSite(timeLineSite)
-                .landingUrl(landingUrl())
-                .sourceId(getSourceId(landingUrl()))
+                .landingUrl(landingUrl(StringUtils.EMPTY))
+                .sourceId(getSourceId(landingUrl(StringUtils.EMPTY)))
                 .logoUrl(logoUrl(StringUtils.EMPTY))
                 .publishedAt(dngnData.getPublishedAt())
                 .content(dngnData.getContent())
@@ -97,7 +95,7 @@ public class DngnJobService extends JobCrawlService implements ApiJobServiceI {
     }
 
     @Override
-    public String landingUrl() {
+    public String landingUrl(String subUrl) {
         return "https://www.notion.so/2c789a2c7b1a4cfca40b11afba678315";
     }
 
