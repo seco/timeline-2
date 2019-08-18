@@ -1,6 +1,7 @@
 package com.wedul.wedul_timeline.core.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.crypto.Cipher;
@@ -19,7 +20,7 @@ public class AES256Cipher {
 
 	private static volatile AES256Cipher INSTANCE;
 	final static String secretKey = "12345678901234567890123456789012"; //32bit
-	static String IV = ""; //16bit
+	static String IV = StringUtils.EMPTY; //16bit
 
 	public static AES256Cipher getInstance() {
 		if (INSTANCE == null) {

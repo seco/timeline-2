@@ -9,6 +9,7 @@ import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,22 +26,19 @@ import java.util.List;
 @Slf4j
 public class DngnJobService extends JobCrawlService implements ApiJobServiceI {
 
-    private final String landingUrl = "https://www.notion.so/2c789a2c7b1a4cfca40b11afba678315";
-    private final String logoUrl = "https://d3qlrgda07sb6k.cloudfront.net/assets/home/base/header/logo-basic-00b7e471b721ce9db8b0758c05a84684413c8aef1ad54caa0f3fcbe7328c947f.svg";
-
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) {
         // 컨텐츠 전체 정보
         DngnResDto dngnResDto = getNotion(restTemplate(), timeLineSite.getSiteUrl());
-        String title = String.valueOf(dngnResDto.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", "").trim();
+        String title = String.valueOf(dngnResDto.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", StringUtils.EMPTY).trim();
         DngnData dngnData = getData(restTemplate(), timeLineSite.getSiteUrl(), dngnResDto.getResults()[0].getValue().getContent());
 
         return Arrays.asList(TimeLineItem.builder()
                 .title(title)
                 .timeLineSite(timeLineSite)
-                .landingUrl(landingUrl)
-                .sourceId(getSourceId(landingUrl))
-                .logoUrl(logoUrl)
+                .landingUrl(landingUrl())
+                .sourceId(getSourceId(landingUrl()))
+                .logoUrl(logoUrl(StringUtils.EMPTY))
                 .publishedAt(dngnData.getPublishedAt())
                 .content(dngnData.getContent())
                 .build());
@@ -84,13 +82,23 @@ public class DngnJobService extends JobCrawlService implements ApiJobServiceI {
 
             if (null != result.getResults()[0].getValue().getProperties()) {
                 sb.append("<p>");
-                sb.append(String.valueOf(result.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", "").trim());
+                sb.append(String.valueOf(result.getResults()[0].getValue().getProperties().getTitle()[0]).replaceAll("\\[|]", StringUtils.EMPTY).trim());
                 sb.append("</p>");
             }
         });
 
         dngnData.setContent(sb.toString());
         return dngnData;
+    }
+
+    @Override
+    public String logoUrl(String subUrl) {
+        return "https://d3qlrgda07sb6k.cloudfront.net/assets/home/base/header/logo-basic-00b7e471b721ce9db8b0758c05a84684413c8aef1ad54caa0f3fcbe7328c947f.svg";
+    }
+
+    @Override
+    public String landingUrl() {
+        return "https://www.notion.so/2c789a2c7b1a4cfca40b11afba678315";
     }
 
     @Data

@@ -234,7 +234,7 @@ public class ReadableRequestWrapper extends HttpServletRequestWrapper {
                         value = new String(tmpValue.getBytes(), tmpValue.getStart(), tmpValue.getEnd() - tmpValue.getStart(), this.encoding);
                     }
                 } else {
-                    value = "";
+                    value = StringUtils.EMPTY;
                 }
 
                 if (StringUtils.isNotBlank(name)) {

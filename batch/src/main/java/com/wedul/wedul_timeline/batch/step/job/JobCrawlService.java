@@ -2,6 +2,7 @@ package com.wedul.wedul_timeline.batch.step.job;
 
 import com.wedul.wedul_timeline.batch.step.SiteCrawlerI;
 import com.wedul.wedul_timeline.core.util.HashUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
 
@@ -21,7 +22,9 @@ public abstract class JobCrawlService implements SiteCrawlerI {
     @Override
     public String removeTag(String text) {
         Pattern pattern = Pattern.compile("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", Pattern.DOTALL);
-        return pattern.matcher(text).replaceAll("");
+        return pattern.matcher(text).replaceAll(StringUtils.EMPTY);
     }
+
+    public abstract String logoUrl(String subUrl);
 
 }

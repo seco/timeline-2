@@ -6,6 +6,7 @@ import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -51,7 +52,7 @@ public class LineJobService extends JobCrawlService implements PageJobServiceI {
                         .title(title)
                         .landingUrl(landingUri)
                         .timeLineSite(timeLineSite)
-                        .logoUrl(logoUrl(""))
+                        .logoUrl(logoUrl(StringUtils.EMPTY))
                         .content(content)
                         .publishedAt(date)
                         .build();
