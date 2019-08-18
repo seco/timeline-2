@@ -16,7 +16,7 @@ public abstract class ApiJobService extends JobCrawlService {
     return new RestTemplate();
   }
 
-  public String landingUrl() {
+  public String landingUrl(String subUrl) {
     return StringUtils.EMPTY;
   }
 

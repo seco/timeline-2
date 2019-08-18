@@ -43,7 +43,7 @@ public class WoowahanJobService extends ApiJobService {
                         landingUrl(timeLineSite.getSiteUrl())
                         .timeLineSite(timeLineSite)
                         .sourceId(getSourceId(woowahanDto.getJobTitle()))
-                        .logoUrl(StringUtils.EMPTY)
+                        .logoUrl(logoUrl(StringUtils.EMPTY))
                         .content(woowahanDto.getContents())
                         .title(woowahanDto.getJobTitle())
                         .publishedAt(DateUtil.startUnixTimeStamp(woowahanDto.getSDate().split("T")[0]))

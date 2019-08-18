@@ -34,8 +34,8 @@ public class DngnJobService extends ApiJobService {
         return Arrays.asList(TimeLineItem.builder()
                 .title(title)
                 .timeLineSite(timeLineSite)
-                .landingUrl(landingUrl())
-                .sourceId(getSourceId(landingUrl()))
+                .landingUrl(landingUrl(StringUtils.EMPTY))
+                .sourceId(getSourceId(landingUrl(StringUtils.EMPTY)))
                 .logoUrl(logoUrl(StringUtils.EMPTY))
                 .publishedAt(dngnData.getPublishedAt())
                 .content(dngnData.getContent())
@@ -95,7 +95,7 @@ public class DngnJobService extends ApiJobService {
     }
 
     @Override
-    public String landingUrl() {
+    public String landingUrl(String subUrl) {
         return "https://www.notion.so/2c789a2c7b1a4cfca40b11afba678315";
     }
 
