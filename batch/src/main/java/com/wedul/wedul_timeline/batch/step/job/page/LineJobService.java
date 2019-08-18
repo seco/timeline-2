@@ -26,7 +26,7 @@ import java.util.List;
  **/
 @Slf4j
 @Service("LineJobService")
-public class LineJobService extends JobCrawlService implements PageJobServiceI {
+public class LineJobService extends PageJobService {
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {

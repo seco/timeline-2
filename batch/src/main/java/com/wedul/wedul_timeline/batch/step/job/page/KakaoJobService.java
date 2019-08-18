@@ -1,6 +1,5 @@
 package com.wedul.wedul_timeline.batch.step.job.page;
 
-import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import com.wedul.wedul_timeline.core.config.error.NotFoundException;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
@@ -23,7 +22,7 @@ import java.util.List;
  **/
 @Service("KakaoJobService")
 @Slf4j
-public class KakaoJobService extends JobCrawlService implements PageJobServiceI {
+public class KakaoJobService extends PageJobService {
 
     private final int MAX_PAGE = 10;
 

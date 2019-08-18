@@ -1,6 +1,5 @@
 package com.wedul.wedul_timeline.batch.step.job.api;
 
-import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import com.wedul.wedul_timeline.batch.step.job.dto.WoowahanDto;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
@@ -12,7 +11,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ import java.util.List;
  **/
 @Service("WoowahanJobService")
 @Slf4j
-public class WoowahanJobService extends JobCrawlService implements ApiJobServiceI {
+public class WoowahanJobService extends ApiJobService {
 
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite)  {

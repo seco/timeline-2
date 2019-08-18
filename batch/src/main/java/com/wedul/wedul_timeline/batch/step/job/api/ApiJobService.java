@@ -1,5 +1,6 @@
 package com.wedul.wedul_timeline.batch.step.job.api;
 
+import com.wedul.wedul_timeline.batch.step.job.JobCrawlService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,13 +10,13 @@ import org.springframework.web.client.RestTemplate;
  * @author wedul
  * @since 2019-08-18
  **/
-public interface ApiJobServiceI {
+public abstract class ApiJobService extends JobCrawlService {
 
-  default RestTemplate restTemplate() {
+  public RestTemplate restTemplate() {
     return new RestTemplate();
   }
 
-  default String landingUrl() {
+  public String landingUrl() {
     return StringUtils.EMPTY;
   }
 
