@@ -5,6 +5,7 @@ import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.util.DateUtil;
 import com.wedul.wedul_timeline.core.util.HashUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -33,7 +34,7 @@ public abstract class TechCrawlService implements SiteCrawlerI {
     @Override
     public String removeTag(String text) {
         Pattern pattern = Pattern.compile("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", Pattern.DOTALL);
-        return pattern.matcher(text).replaceAll("");
+        return pattern.matcher(text).replaceAll(StringUtils.EMPTY);
     }
 
     abstract public String getLogoUrl();

@@ -6,6 +6,7 @@ import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.entity.TimeLineSite;
 import com.wedul.wedul_timeline.core.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -59,8 +60,6 @@ public abstract class LocketPunchJobService extends JobCrawlService {
         return document.getElementById(timeLineItemJobContentId()).html();
     }
 
-    protected abstract String logoUrl();
-
     @Override
     public List<TimeLineItem> crawl(TimeLineSite timeLineSite) throws IOException {
         List<TimeLineItem> timeLineItems = new ArrayList<>();
@@ -82,7 +81,7 @@ public abstract class LocketPunchJobService extends JobCrawlService {
                         .sourceId(getSourceId(detailUrl))
                         .title(title)
                         .landingUrl(detailUrl)
-                        .logoUrl(logoUrl())
+                        .logoUrl(logoUrl(StringUtils.EMPTY))
                         .content(getContent(detailUrl))
                         .publishedAt(date)
                         .build();

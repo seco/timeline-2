@@ -7,7 +7,4 @@ package com.wedul.wedul_timeline.batch.step.job.page;
  * @since 2019-08-18
  **/
 public interface PageJobServiceI {
-
-  String logoUrl(String subUrl);
-
 }

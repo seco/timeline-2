@@ -21,7 +21,7 @@ public final class HashUtil {
 	 * @return
 	 */
 	public static String md5(String str){
-		String MD5 = ""; 
+		String MD5 = null;
 		try{
 			MessageDigest md = MessageDigest.getInstance("MD5"); 
 			md.update(str.getBytes()); 
@@ -33,7 +33,6 @@ public final class HashUtil {
 			MD5 = sb.toString();
 		}catch(NoSuchAlgorithmException e){
 			e.printStackTrace(); 
-			MD5 = null; 
 		}
 		return MD5;
 	}
@@ -45,7 +44,7 @@ public final class HashUtil {
 	 * @return
 	 */
 	public static String sha256(String str) {
-		String SHA = "";
+		String SHA = null;
 		try {
 			MessageDigest sh = MessageDigest.getInstance("SHA-256");
 			sh.update(str.getBytes());
@@ -57,7 +56,6 @@ public final class HashUtil {
 			SHA = sb.toString();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-			SHA = null;
 		}
 		return SHA;
 	}
