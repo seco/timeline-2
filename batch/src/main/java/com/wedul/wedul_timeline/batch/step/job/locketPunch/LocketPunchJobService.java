@@ -39,8 +39,8 @@ public abstract class LocketPunchJobService extends JobCrawlService {
         return "job-dates";
     }
 
-    protected String timeLineItemJobContentId() {
-        return "job-content";
+    protected String timeLineItemJobContentClass() {
+        return ".full-text";
     }
 
     protected long timeLineItemPublishedAt(String date) throws ParseException {
@@ -57,7 +57,7 @@ public abstract class LocketPunchJobService extends JobCrawlService {
 
     protected String getContent(String detailUrl) throws IOException {
         Document document = Jsoup.connect(detailUrl).get();
-        return document.getElementById(timeLineItemJobContentId()).html();
+        return document.select(timeLineItemJobContentClass()).html();
     }
 
     @Override
