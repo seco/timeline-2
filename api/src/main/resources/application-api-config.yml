@@ -13,9 +13,17 @@ server:
 spring:
   profiles: development
 
+logging:
+  config: api/src/main/resources/api-dev-logback.xml
 
 # 운영환경 설정
 ---
 spring:
   profiles: production
 
+server:
+  port: 8081
+
+
+logging:
+  config: api/src/main/resources/api-dev-logback.xml
