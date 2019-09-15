@@ -26,7 +26,8 @@ public class BatchScheduler {
     private final Job job;
     private final JobLauncher jobLauncher;
 
-    @Scheduled(cron = "00 05,25 00,12 * * *")
+    @Scheduled(cron = "00 10 */2 * * *")
+//    @Scheduled(cron = "00 */1 * * * *")
     public void batchScheduler() throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
         jobLauncher.run(job, new JobParametersBuilder().addDate("requestDate", new Date()).toJobParameters());
     }
