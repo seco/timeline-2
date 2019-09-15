@@ -19,7 +19,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES256Cipher {
 
 	private static volatile AES256Cipher INSTANCE;
-	final static String secretKey = "12345678901234567890123456789012"; //32bit
+	final static String secretKey = "12345678901234567890123456789012"; // 32bit
 	static String IV = StringUtils.EMPTY; //16bit
 
 	public static AES256Cipher getInstance() {
