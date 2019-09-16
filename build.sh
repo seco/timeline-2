@@ -1,5 +1,30 @@
-#!/bin/sh
+#!/bin/bash
+# bash Call
+# sudo bash {PATH}/deploy.sh 8080 spring-boot-jenkins
 
-ps aux | grep -i 'java -jar' | awk '{print $2}' | xargs kill -9
-nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/batch/build/libs/batch-1.0.0.war &
-nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/api/build/libs/api-1.0.0.war &
+# Field
+
+# Server Port
+# Ex) 8080
+BATCH_PORT=8082
+API_PORT=8081
+# Service Name
+# Ex) spring-boot-jenkins
+
+# Function
+function stop(){
+    sudo echo "Stoping process"
+    sudo fuser -n tcp -k $BATCH_PORT
+    sudo fuser -n tcp -k $API_PORT
+}
+
+function start(){
+    sudo echo "start process"
+    sudo nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/batch/build/libs/batch-1.0.0.war &
+    sudo nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/api/build/libs/api-1.0.0.war &
+}
+
+# Function Call
+stop
+
+start
