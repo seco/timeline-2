@@ -26,4 +26,4 @@ server:
 
 
 logging:
-  config: api/src/main/resources/api-dev-logback.xml
+  config: api/src/main/resources/api-prob-logback.xml
