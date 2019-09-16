@@ -20,8 +20,8 @@ function stop(){
 
 function start(){
     sudo echo "start process"
-    BUILD_ID=dontKillMe sudo nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/batch/build/libs/batch-1.0.0.war &
-    BUILD_ID=dontKillMe sudo nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/api/build/libs/api-1.0.0.war &
+    sudo nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/batch/build/libs/batch-1.0.0.war &
+    sudo nohup java -jar -Dspring.profiles.active=production /var/lib/jenkins/workspace/timeline/api/build/libs/api-1.0.0.war &
 }
 
 # Function Call
