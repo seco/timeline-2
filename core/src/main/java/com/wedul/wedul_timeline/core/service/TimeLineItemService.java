@@ -4,6 +4,7 @@ import com.wedul.wedul_timeline.core.config.Constant;
 import com.wedul.wedul_timeline.core.entity.TimeLineItem;
 import com.wedul.wedul_timeline.core.repository.TimeLineItemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import javax.transaction.Transactional;
  **/
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TimeLineItemService {
 
     private final TimeLineItemRepository timeLineItemRepository;
@@ -25,7 +27,11 @@ public class TimeLineItemService {
     @Transactional
     @CacheEvict(cacheNames = Constant.TIMELINE_ITEM_CACHE_KEY, key = "#timeLineItem.sourceId")
     public void setTimeLineItem(TimeLineItem timeLineItem) {
-        timeLineItemRepository.save(timeLineItem);
+        try {
+            timeLineItemRepository.save(timeLineItem);
+        } catch (Exception e) {
+            log.error("데이터 저장이 실패하였습니다." + timeLineItem.getContent(), e);
+        }
     }
 
     @Transactional
