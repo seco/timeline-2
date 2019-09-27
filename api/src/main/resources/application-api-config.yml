@@ -14,7 +14,7 @@ spring:
   profiles: development
 
 logging:
-  config: api/src/main/resources/api-dev-logback.xml
+  config: classpath:api-dev-logback.xml
 
 # 운영환경 설정
 ---
@@ -26,4 +26,4 @@ server:
 
 
 logging:
-  config: api/src/main/resources/api-prob-logback.xml
+  config: classpath:api-prob-logback.xml

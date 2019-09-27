@@ -10,7 +10,7 @@ spring:
   profiles: development
 
 logging:
-  config: batch/src/main/resources/batch-dev-logback.xml
+  config: classpath:batch-dev-logback.xml
 
 # 운영환경 설정
 ---
@@ -21,4 +21,4 @@ server:
   port: 8082
 
 logging:
-  config: batch/src/main/resources/batch-prob-logback.xml
+  config: classpath:batch-prob-logback.xml

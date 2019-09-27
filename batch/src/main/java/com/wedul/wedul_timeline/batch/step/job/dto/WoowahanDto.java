@@ -28,4 +28,7 @@ public class WoowahanDto {
 
     @JsonProperty("SDate")
     private String sDate;
+
+    @JsonProperty("TargetURL")
+    private String targetUrl;
 }

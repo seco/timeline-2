@@ -8,6 +8,11 @@ spring:
 spring:
   profiles: development
 
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    encoding: UTF-8
+
 config:
   kafka-topic:
     item: wedul_timeline
@@ -38,6 +43,11 @@ server:
 
 spring:
   profiles: production
+
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    encoding: UTF-8
 
 config:
   kafka-topic:
