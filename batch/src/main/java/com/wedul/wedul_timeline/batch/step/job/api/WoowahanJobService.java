@@ -40,7 +40,7 @@ public class WoowahanJobService extends ApiJobService {
         Arrays.stream(ret.getBody()).forEach(woowahanDto -> {
             try {
                 timeLineItems.add(TimeLineItem.builder().
-                        landingUrl(timeLineSite.getSiteUrl())
+                        landingUrl(woowahanDto.getTargetUrl())
                         .timeLineSite(timeLineSite)
                         .sourceId(getSourceId(woowahanDto.getJobTitle()))
                         .logoUrl(logoUrl(StringUtils.EMPTY))
