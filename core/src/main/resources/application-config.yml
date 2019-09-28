@@ -8,32 +8,13 @@ spring:
 spring:
   profiles: development
 
-  flyway:
-    enabled: true
-    baselineOnMigrate: true
-    encoding: UTF-8
-
 config:
   kafka-topic:
     item: wedul_timeline
 
 redis:
-  host: 192.168.219.120
-  port: 36379
-
-logging:
-  level:
-    root: DEBUG
-    org.springframework: DEBUG
-    org.apache.kafka: WARN
-    com.wedul.wedul_timeline: DEBUG
-    java.sql: DEBUG
-    java.sql.ResultSet: DEBUG
-    com.zaxxer.hikari: ERROR
-  file: ./logs/batch.%d{yyyy-MM-dd}.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
+  host: 127.0.0.1
+  port: 6379
 
 server:
   port: 8081
@@ -43,11 +24,6 @@ server:
 
 spring:
   profiles: production
-
-  flyway:
-    enabled: true
-    baselineOnMigrate: true
-    encoding: UTF-8
 
 config:
   kafka-topic:
