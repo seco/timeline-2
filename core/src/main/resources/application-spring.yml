@@ -8,6 +8,11 @@ spring:
 spring:
   profiles: development
 
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    encoding: UTF-8
+
   datasource:
     username: /88M772kGsUdE/yutXxF2A==
 
@@ -19,7 +24,7 @@ spring:
     tomcat:
       connection-properties: useUnicode=yes&characterEncoding=utf8;useSSL=false
 
-    url: jdbc:mysql://192.168.219.120:3307/wedul?useUnicode=yes&characterEncoding=utf8&autoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3306/wedul?useUnicode=yes&characterEncoding=utf8&autoReconnect=true
     initialization-mode: always
     driver-class-name: com.mysql.jdbc.Driver
 
@@ -51,6 +56,11 @@ spring:
 ---
 spring:
   profiles: production
+
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    encoding: UTF-8
 
   datasource:
     username: /88M772kGsUdE/yutXxF2A==
