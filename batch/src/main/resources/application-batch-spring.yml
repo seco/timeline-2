@@ -9,6 +9,7 @@ spring:
 spring:
   profiles: development
   batch:
+    initialize-schema: ALWAYS
     job:
       names: timelineCrawlerJob
       enabled: false
